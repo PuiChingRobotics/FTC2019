@@ -8,20 +8,22 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class FTC_2019_TestBot_Init {
 
+    //Dirve MOtors
     public DcMotor Lfront;
     public DcMotor Rfront;
     public DcMotor Lback;
     public DcMotor Rback;
-
+    //Latching Motors
     public DcMotor Latching;
     public DcMotor Latching2;
-
+    //Succ Motors
     public DcMotor Flip;
     //public DcMotor LSlength;
 
+    //Auto Sampling Servo
     public Servo Lkick;
     public Servo Rkick;
-
+    //Auto Claiming module
     public Servo Claim;
 
     //Drive
@@ -35,8 +37,9 @@ public class FTC_2019_TestBot_Init {
     public double Rfrontforward = 0;
     public double Rbackforward = 0;
 
+    //Both Kick Servo Posistion
     public final double kickopen = 0.5;
-
+    //Claim Servo Position
     public final double ClaimLevel = 0.43;
     public final double ClaimThrow = 1;
 
