@@ -7,9 +7,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.FTC2019.MasterVision;
 import org.firstinspires.ftc.teamcode.FTC2019.SampleRandomizedPositions;
 
-@Autonomous(name="FTC_2019_Auto", group ="FTC 2019")
+@Autonomous(name="FTC_2019_Blue2", group ="FTC 2019")
 
-public class FTC_2019_Auto extends LinearOpMode {
+public class FTC_2019_Auto_Blue2 extends LinearOpMode {
 
     MasterVision vision;
     SampleRandomizedPositions goldPosition;
@@ -145,66 +145,66 @@ public class FTC_2019_Auto extends LinearOpMode {
                 sleep(500);
                 turnleft(45,0.6);
                 sleep(500);
-                backward(80,1);
+                backward(95,1);
                 robot.Lkick.setPosition(robot.kickopen);
                 sleep(500);
                 turnright(67.5,0.6);
                 sleep(500);
-                backward(100,1);
+                backward(120,1);
                 sleep(1000);
                 turnleft(45,0.6);
                 robot.Lkick.setPosition(0);
                 sleep(500);
-                left(30,1);
+                left(45,1);
                 robot.Claim.setPosition(robot.ClaimThrow);
                 sleep(500);
-                forward(200,1);
+                forward(300,1);
                 robot.Claim.setPosition(robot.ClaimLevel);
                 break;
 
-                case CENTER:
-                    telemetry.addLine("CENTER");
-                    sleep(9000);
-                    backward(15,1);
-                    Latching(1,0);
-                    backward(100,1);
-                    sleep(500);
-                    turnleft(22.5,0.6);
-                    sleep(500);
-                    left(80,1);
-                    robot.Claim.setPosition(robot.ClaimThrow);
-                    forward(225,1);
-                    robot.Claim.setPosition(robot.ClaimLevel);
-                    break;
+            case CENTER:
+                telemetry.addLine("CENTER");
+                sleep(9000);
+                backward(115,1);
+                Latching(1,0);
+                sleep(500);
+                turnleft(22.5,0.6);
+                sleep(500);
+                left(80,1);
+                robot.Claim.setPosition(robot.ClaimThrow);
+                forward(225,1);
+                robot.Claim.setPosition(robot.ClaimLevel);
+                break;
 
-                case RIGHT:
-                    telemetry.addLine("RIGHT");
-                    sleep(9000);
-                    backward(35,0.6);
-                    Latching(1,0);
-                    sleep(500);
-                    left(85,0.7);
-                    robot.Rkick.setPosition(robot.kickopen);
-                    sleep(500);
-                    backward(30,1);
-                    sleep(500);
-                    turnleft(15,0.7);
-                    sleep(500);
-                    left(50,0.6);
-                    sleep(500);
-                    backward(80,0.7);
-                    robot.Claim.setPosition(robot.ClaimThrow);
-                    sleep(1000);
-                    forward(200,1);
-                    robot.Rkick.setPosition(1);
-                    robot.Claim.setPosition(robot.ClaimLevel);
-                    break;
+            case RIGHT:
+                telemetry.addLine("RIGHT");
+                sleep(9000);
+                backward(35,0.6);
+                Latching(1,0);
+                sleep(500);
+                left(85,0.7);
+                robot.Rkick.setPosition(robot.kickopen);
+                sleep(500);
+                backward(30,1);
+                sleep(500);
+                turnleft(15,0.7);
+                sleep(500);
+                left(50,0.6);
+                sleep(500);
+                backward(80,0.7);
+                robot.Claim.setPosition(robot.ClaimThrow);
+                sleep(1000);
+                forward(200,1);
+                robot.Rkick.setPosition(1);
+                robot.Claim.setPosition(robot.ClaimLevel);
+                break;
 
-                case UNKNOWN:
-                    telemetry.addLine("UNKNOWN");
-                    break;
+            case UNKNOWN:
+                telemetry.addLine("UNKNOWN");
+                break;
         }
-                telemetry.update();
+
+        telemetry.update();
 
         /*robot.Lkick.setPosition(0.5);
         robot.Rkick.setPosition(0.5);*/
