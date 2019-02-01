@@ -140,7 +140,7 @@ public class FTC_2019_Auto extends LinearOpMode {
             case LEFT:
                 telemetry.addLine("LEFT");
                 sleep(9000);
-                backward(35,0.6);
+                backward(45,0.6);
                 Latching(1,0);
                 sleep(500);
                 right(85,0.7);
@@ -153,8 +153,12 @@ public class FTC_2019_Auto extends LinearOpMode {
                 right(50,0.6);
                 sleep(500);
                 backward(80,0.7);
-                robot.Claim.setPosition(robot.ClaimThrow);
                 sleep(1000);
+                turnleft(40,0.6);
+                sleep(500);
+                left(10,1);
+                robot.Claim.setPosition(robot.ClaimThrow);
+                sleep(500);
                 forward(200,1);
                 robot.Lkick.setPosition(0);
                 robot.Claim.setPosition(robot.ClaimLevel);
