@@ -89,30 +89,6 @@ public class FTC_2019_TestBot_Manual extends OpMode{
             robot.runModeSetLatching("encoder");
         }
 
-
-            /*if (gamepad1.left_trigger > 0) {
-                robot.Flip.setPower(gamepad1.left_trigger*-0.5);
-            }
-            else if (gamepad1.right_trigger > 0) {
-                robot.Flip.setPower(gamepad1.right_trigger*0.5);
-            }
-            else {
-                robot.Flip.setPower(0);
-            }*/
-
-
-
-        /*if (gamepad1.left_bumper) {
-            robot.LSlength.setPower(-0.5);
-        }
-        else if (gamepad1.right_bumper) {
-            robot.LSlength.setPower(0.5);
-        }
-        else  {
-            robot.LSlength.setPower(0);
-        }*/
-
-
         telemetry.addData("gamepad1", !gamepad1.atRest());
         telemetry.addData("leftStickX", leftStickX);
         telemetry.addData("leftStickY", leftStickY);
@@ -129,14 +105,6 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         telemetry.addData("Lbacktmp", robot.Lbacktmp);
         telemetry.addData("Rbacktmp", robot.Rbacktmp);
 
-        //telemetry.addData("LSlength Power", robot.LSlength.getPower());
-
-        telemetry.addData("Latching Power", robot.Latching.getPower());
-        telemetry.addData("Latching2 Power", robot.Latching2.getPower());
-
-        telemetry.addData("Latching Encoder", robot.Latching.getCurrentPosition());
-        telemetry.addData("Latching2 Encoder", robot.Latching2.getCurrentPosition());
-
             /*if (gamepad1.right_trigger > 0) {
                 robot.Lfront.setPower(0.5);
                 robot.Lback.setPower(0.5);
@@ -148,7 +116,6 @@ public class FTC_2019_TestBot_Manual extends OpMode{
                 robot.Rfront.setPower(-0.5);
                 robot.Rback.setPower(-0.5);
             }*/
-        //Player1
 
         //Player2
         telemetry.update();
