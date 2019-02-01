@@ -209,13 +209,6 @@ public class FTC_2019_Auto extends LinearOpMode {
 
         //Latching(1,-23500);
 
-        telemetry.addData("Latching Position", robot.Latching2.getCurrentPosition());
-        telemetry.update();
-
-        while (opModeIsActive()){
-            telemetry.update();
-        }
-
         vision.shutdown();
 
     }
