@@ -143,64 +143,42 @@ public class FTC_2019_Auto_Red2 extends LinearOpMode {
                 backward(37,1);
                 Latching(1,0);
                 sleep(500);
-                turnleft(45,0.6);
-                sleep(500);
-                backward(95,1);
+                right(85,0.7);
                 robot.Lkick.setPosition(robot.kickopen);
                 sleep(500);
-                turnright(67.5,0.6);
-                sleep(500);
-                backward(120,1);
-                sleep(1000);
-                turnleft(45,0.6);
+                backward(40,1);
                 robot.Lkick.setPosition(0);
-                sleep(500);
-                left(45,1);
-                robot.Claim.setPosition(robot.ClaimThrow);
-                sleep(500);
-                forward(300,1);
-                robot.Claim.setPosition(robot.ClaimLevel);
+                sleep(10000);
                 break;
 
             case CENTER:
                 telemetry.addLine("CENTER");
                 sleep(9000);
-                backward(115,1);
+                backward(60,1);
                 Latching(1,0);
-                sleep(500);
-                turnleft(22.5,0.6);
-                sleep(500);
-                left(80,1);
-                robot.Claim.setPosition(robot.ClaimThrow);
-                forward(225,1);
-                robot.Claim.setPosition(robot.ClaimLevel);
+                sleep(10000);
                 break;
 
             case RIGHT:
                 telemetry.addLine("RIGHT");
                 sleep(9000);
-                backward(35,0.6);
+                backward(37,1);
                 Latching(1,0);
                 sleep(500);
-                left(85,0.7);
+                left(85,1);
                 robot.Rkick.setPosition(robot.kickopen);
                 sleep(500);
-                backward(30,1);
-                sleep(500);
-                turnleft(15,0.7);
-                sleep(500);
-                left(50,0.6);
-                sleep(500);
-                backward(80,0.7);
-                robot.Claim.setPosition(robot.ClaimThrow);
-                sleep(1000);
-                forward(200,1);
+                backward(40,1);
                 robot.Rkick.setPosition(1);
-                robot.Claim.setPosition(robot.ClaimLevel);
+                sleep(10000);
                 break;
 
             case UNKNOWN:
                 telemetry.addLine("UNKNOWN");
+                sleep(9000);
+                backward(60,1);
+                Latching(1,0);
+                sleep(10000);
                 break;
         }
 

@@ -7,7 +7,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.FTC2019.MasterVision;
 import org.firstinspires.ftc.teamcode.FTC2019.SampleRandomizedPositions;
 
-@Autonomous(name="FTC_2019_Blue2", group ="FTC 2019")
+@Autonomous(name="FTC_2019_Auto_Blue2", group ="FTC 2019")
 
 public class FTC_2019_Auto_Blue2 extends LinearOpMode {
 
