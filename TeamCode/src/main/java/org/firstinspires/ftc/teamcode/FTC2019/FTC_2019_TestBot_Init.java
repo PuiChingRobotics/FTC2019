@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class FTC_2019_TestBot_Init {
 
-    //Dirve MOtors
+    //Dirve Motors
     public DcMotor Lfront;
     public DcMotor Rfront;
     public DcMotor Lback;
