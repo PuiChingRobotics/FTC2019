@@ -155,7 +155,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                 turnleft(45,0.6);
                 robot.Lkick.setPosition(0);
                 sleep(500);
-                left(45,1);
+                left(60,1);
                 robot.Claim.setPosition(robot.ClaimThrow);
                 sleep(500);
                 forward(300,1);
@@ -201,6 +201,10 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
 
                 case UNKNOWN:
                     telemetry.addLine("UNKNOWN");
+                    sleep(9000);
+                    backward(60,1);
+                    Latching(1,0);
+                    sleep(10000);
                     break;
         }
 
