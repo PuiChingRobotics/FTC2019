@@ -61,7 +61,7 @@ public class FTC_2019_TestBot_Init {
 
         Claim = _hw.servo.get("Claim");
 
-        //Flip = _hw.dcMotor.get("Flip");
+        Flip = _hw.dcMotor.get("Flip");
         //LSlength = _hw.dcMotor.get("LSlength");
 
         //Latching.setDirection(DcMotorSimple.Direction.REVERSE);
