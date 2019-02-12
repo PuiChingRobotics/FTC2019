@@ -128,9 +128,8 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
         waitForStart();
 
         vision.disable();// disables tracking algorithms
-
+        telemetry.addLine("393939");
         Latching(1,-23500);
-
         goldPosition = vision.getTfLite().getLastKnownSampleOrder();
 
 
@@ -158,7 +157,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                 left(60,1);
                 robot.Claim.setPosition(robot.ClaimThrow);
                 sleep(500);
-                forward(300,1);
+                forward(315,1);
                 robot.Claim.setPosition(robot.ClaimLevel);
                 break;
 

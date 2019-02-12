@@ -143,7 +143,7 @@ public class FTC_2019_Auto_Red2 extends LinearOpMode {
                 backward(37,1);
                 Latching(1,0);
                 sleep(500);
-                right(85,0.7);
+                right(60,0.7);
                 robot.Lkick.setPosition(robot.kickopen);
                 sleep(500);
                 backward(40,1);
@@ -154,7 +154,7 @@ public class FTC_2019_Auto_Red2 extends LinearOpMode {
             case CENTER:
                 telemetry.addLine("CENTER");
                 sleep(9000);
-                backward(60,1);
+                backward(65,1);
                 Latching(1,0);
                 sleep(10000);
                 break;

@@ -67,6 +67,16 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         robot.Rfront.setPower(robot.Rfronttmp);
         robot.Rback.setPower(robot.Rbacktmp);
 
+        if (gamepad1.right_bumper){
+            robot.Flip.setPower(0.7);       //Flip up
+        }
+        else if (gamepad1.left_bumper){
+            robot.Flip.setPower(-0.7);      //Flip Down
+        }
+        else  {
+            robot.Flip.setPower(0);
+        }
+
         if (gamepad1.a){
             robot.Latching.setPower(0.7);       //Latching DOWN
             robot.Latching2.setPower(0.7);       //Latching DOWN
