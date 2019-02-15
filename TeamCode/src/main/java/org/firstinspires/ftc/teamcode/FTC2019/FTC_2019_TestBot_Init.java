@@ -73,7 +73,7 @@ public class FTC_2019_TestBot_Init {
         Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-    }
+}
 
     public void runModeSet(String mode) {
         if (mode == "position") {
