@@ -6,12 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
-@TeleOp(name="FTC_2019_TestBot_Manual", group="FTC 2018")
-public class FTC_2019_TestBot_Manual extends OpMode{
+@TeleOp(name="FTC_2019_TestBot_Pit", group="FTC 2018")
+public class FTC_2019_TestBot_Pit extends OpMode{
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
-    boolean cp = true;
-    boolean clipb = true;
+
     @Override
     public void init(){
         robot.init(hardwareMap);
@@ -19,6 +18,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         robot.Rfront.setPower(0);
         robot.Lback.setPower(0);
         robot.Rback.setPower(0);
+
     }
 
     @Override
@@ -47,6 +47,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
 
         double speed_new = 1-0.7;
         double speed_old = 0.7;
+
         telemetry.addData("Running", "Robot 1");
 
         //player1
@@ -66,38 +67,40 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         robot.Lback.setPower(robot.Lbacktmp);
         robot.Rfront.setPower(robot.Rfronttmp);
         robot.Rback.setPower(robot.Rbacktmp);
-        if (gamepad1.y) {
-            robot.Claim.setPosition(robot.ClaimLevel);  //Bk to Claim level
-        }
-        if (gamepad1.x) {
-            robot.Claim.setPosition(robot.ClaimThrow); //Claim throw
-        }
-        if (gamepad2.x && clipb){
-            clipb=false;
-            if (cp) {
-                robot.Clip.setPower(-1);
-                cp=false;
-            } else {
-                robot.Clip.setPower(1);
-                cp=true;
-            }
-        }
-        if (gamepad2.x == false && clipb == false ) clipb=true;
-    /*    if (gamepad2.y){
-            robot.Clip.setPower(-1);
-        }*/
 
-        if (gamepad2.right_bumper){
+        if (gamepad1.dpad_down){
+            robot.Latching.setPower(0.7);       //Latching DOWN
+            robot.Latching2.setPower(0.7);       //Latching DOWN
+        }
+        else if (gamepad1.dpad_up){
+            robot.Latching.setPower(-0.7);      //Latching UP
+            robot.Latching2.setPower(-0.7);       //Latching UP
+
+        }
+        if (gamepad1.dpad_right){
+
+        }
+        else if (gamepad1.dpad_left){
+
+        }
+
+        else  {
+            robot.Latching.setPower(0);
+            robot.Latching2.setPower(0);
+        }
+
+        if (gamepad1.x){
+            robot.Clip.setPower(1.0);
+        }
+        if (gamepad1.y){
+            robot.Clip.setPower(-1);
+        }
+
+        if (gamepad1.right_bumper){
             robot.Flip.setPower(1);       //Flip Up
         }
-        else if (gamepad2.left_bumper){
-            robot.Flip.setPower(-1);      //Flip Down
-        }
-        else if (gamepad2.dpad_down){
-            robot.Flip.setPower(-0.4);
-        }
-        else if (gamepad2.dpad_up){
-            robot.Flip.setPower(0.4);
+        else if (gamepad1.left_bumper){
+            robot.Flip.setPower(-0.5);      //Flip Down
         }
         else  {
             robot.Flip.setPower(0);
@@ -109,11 +112,11 @@ public class FTC_2019_TestBot_Manual extends OpMode{
             robot.Clip.setPower(-1);
         }*/
 
-        if (gamepad1.dpad_down){
+        if (gamepad1.a){
             robot.Latching.setPower(0.7);       //Latching DOWN
             robot.Latching2.setPower(0.7);       //Latching DOWN
         }
-        else if (gamepad1.dpad_up){
+        else if (gamepad1.b){
             robot.Latching.setPower(-0.7);      //Latching UP
             robot.Latching2.setPower(-0.7);       //Latching UP
 
@@ -123,20 +126,14 @@ public class FTC_2019_TestBot_Manual extends OpMode{
             robot.Latching2.setPower(0);
         }
 
- /*       if (gamepad2.right_bumper) {
-            robot.Clip.setPower(1.0);
-        }else if (gamepad2.left_bumper) {
-            robot.Clip.setPower(-1);
-        }*/
-
-
-/*        if (gamepad1.x){
+        if (gamepad1.x){
             robot.runModeSetLatching("reset");
         }
 
         if (gamepad1.y) {
             robot.runModeSetLatching("encoder");
-        }*/
+        }
+
         telemetry.addData("gamepad1", !gamepad1.atRest());
         telemetry.addData("leftStickX", leftStickX);
         telemetry.addData("leftStickY", leftStickY);

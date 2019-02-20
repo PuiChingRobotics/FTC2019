@@ -121,7 +121,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         parameters.vuforiaLicenseKey = "AXkVpHb/////AAABmTAE3zZYuEAqmWdab0pJQ9EH65J/3Dw/hnjqLlsJ6Lj4NKskFaXCfQ0yl5QyhVTIJinYPJ/553/NPU1F9fkSkX8xtgKVMEWdDwF5DC6tqN4D74iEIEyJzvye3/W1Mmryu9dmxyAdWJq+zVxqTRE+ELaw2cZDPMHnXVQ2NFeHvM6Eq9hNgkxzB1dy0WiC5BdftcPrsPdVuKsGRaWhKwXD8N87uO4+xeZIkx6lw7R3wWDW9IcLL6fQophrM1bA4kvOUA/GHk+paW6bSr07BfWCckBbFduvgTLtL5VwRXMr8MqHF9Vk80oWQYWYin5KevhfgiN9UUdoVFfl01O4RfqSbDOJg/FH+adPJl5io3PahBsj\n";
 
-        vision = new org.firstinspires.ftc.teamcode.FTC2019.MasterVision(parameters, hardwareMap, false, MasterVision.TFLiteAlgorithm.INFER_NONE );
+        vision = new org.firstinspires.ftc.teamcode.FTC2019.MasterVision(parameters, hardwareMap, true, MasterVision.TFLiteAlgorithm.INFER_NONE );
         vision.init();// enables the camera overlay
         vision.enable();// enables the tracking algorithms
 
@@ -171,7 +171,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                     sleep(500);
                     left(80,1);
                     robot.Claim.setPosition(robot.ClaimThrow);
-                    forward(225,1);
+                    forward(205,1);
                     robot.Claim.setPosition(robot.ClaimLevel);
                     break;
 
@@ -186,7 +186,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                     sleep(500);
                     backward(30,1);
                     sleep(500);
-                    turnleft(15,0.7);
+                    turnleft(17,0.7);
                     sleep(500);
                     left(50,0.6);
                     sleep(500);

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -7,7 +8,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 
 public class FTC_2019_TestBot_Init {
-
     //Dirve Motors
     public DcMotor Lfront;
     public DcMotor Rfront;
@@ -25,6 +25,8 @@ public class FTC_2019_TestBot_Init {
     public Servo Rkick;
     //Auto Claiming module
     public Servo Claim;
+    //collector
+    public CRServo Clip;
 
     //Drive
     public double Lfronttmp = 0;
@@ -62,6 +64,7 @@ public class FTC_2019_TestBot_Init {
         Claim = _hw.servo.get("Claim");
 
         Flip = _hw.dcMotor.get("Flip");
+        Clip = _hw.crservo.get("Clip");
         //LSlength = _hw.dcMotor.get("LSlength");
 
         //Latching.setDirection(DcMotorSimple.Direction.REVERSE);
