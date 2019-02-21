@@ -10,9 +10,9 @@ class MasterVision(private val parameters: VuforiaLocalizer.Parameters, val hMap
     val tfLite = TFLite(this)
 
     enum class TFLiteAlgorithm{
-        INFER_LEFT,
-        INFER_RIGHT,
-        INFER_NONE
+            INFER_LEFT,
+            INFER_RIGHT,
+            INFER_NONE
     }
 
 
