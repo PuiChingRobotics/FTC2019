@@ -37,7 +37,7 @@ class TFLite(private val master: MasterVision) {
 
                     for (recognition in updatedRecognitions) {
                         if (recognition.label == LABEL_GOLD_MINERAL)
-                            goldMineralX = recognition.top.toInt()
+                            goldMineralX = recognition.top.toInt()          //left,right,top,bottom
                         else if (silverMineral1X == null)
                             silverMineral1X = recognition.top.toInt()
                         else

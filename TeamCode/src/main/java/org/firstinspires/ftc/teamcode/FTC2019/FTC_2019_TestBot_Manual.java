@@ -3,15 +3,14 @@ package org.firstinspires.ftc.teamcode.FTC2019;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name="FTC_2019_TestBot_Manual", group="FTC 2018")
 public class FTC_2019_TestBot_Manual extends OpMode{
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
-    boolean cp = true;
-    boolean clipb = true;
+    private boolean cp = true;
+    private boolean clipb = true;
     @Override
     public void init(){
         robot.init(hardwareMap);
@@ -103,9 +102,10 @@ public class FTC_2019_TestBot_Manual extends OpMode{
             robot.Flip.setPower(0);
         }
 
- /*       if (gamepad2.right_bumper) {
+        /* if (gamepad2.right_bumper) {
             robot.Clip.setPower(1.0);
-        }else if (gamepad2.left_bumper) {
+        }
+        else if (gamepad2.left_bumper) {
             robot.Clip.setPower(-1);
         }*/
 

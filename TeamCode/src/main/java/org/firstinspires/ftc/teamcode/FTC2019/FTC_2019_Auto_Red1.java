@@ -2,10 +2,8 @@ package org.firstinspires.ftc.teamcode.FTC2019;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.vuforia.Vuforia;
+
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.teamcode.FTC2019.MasterVision;
-import org.firstinspires.ftc.teamcode.FTC2019.SampleRandomizedPositions;
 
 @Autonomous(name="FTC_2019_Auto_Red1", group ="FTC 2019")
 
