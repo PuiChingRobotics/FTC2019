@@ -85,7 +85,6 @@ public class FTC_2019_TestBot_Manual extends OpMode{
     /*    if (gamepad2.y){
             robot.Clip.setPower(-1);
         }*/
-
         if (gamepad2.right_bumper){
             robot.Flip.setPower(1);       //Flip Up
         }

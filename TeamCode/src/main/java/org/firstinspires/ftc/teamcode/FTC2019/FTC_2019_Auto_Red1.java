@@ -146,14 +146,31 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                 sleep(500);
                 turnleft(45,0.6);
                 sleep(500);
-                backward(95,1);
+
+                backward(45,1);
+                sleep(500);
+                turnright(45,0.6);
+                sleep(500);
+                backward(60,1);
+                sleep(1000);
+                turnleft(28,0.6);
+                sleep(500);
+                left(40,1);
+                robot.Claim.setPosition(robot.ClaimThrow);
+                sleep(500);
+                forward(315,1);
+                robot.Claim.setPosition(robot.ClaimLevel);
+                robot.Park.setPosition(0);
+                sleep(9000);
+                break;
+     /*           backward(90,1);
                 robot.Lkick.setPosition(robot.kickopen);
                 sleep(500);
                 turnright(67.5,0.6);
                 sleep(500);
                 backward(120,1);
                 sleep(1000);
-                turnleft(45,0.6);
+                turnleft(48,0.6);
                 robot.Lkick.setPosition(0);
                 sleep(500);
                 left(60,1);
@@ -161,7 +178,9 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                 sleep(500);
                 forward(315,1);
                 robot.Claim.setPosition(robot.ClaimLevel);
-                break;
+                robot.Park.setPosition(0);
+                sleep(9000);
+                break; */
 
                 case CENTER:
                     telemetry.addLine("CENTER");
@@ -172,10 +191,14 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                     turnleft(22.5,0.6);
                     sleep(500);
                     left(80,1);
+                    sleep(500);
+                    backward(40,1);                 //+40
                     robot.Claim.setPosition(robot.ClaimThrow);
                     sleep(500);
-                    forward(185,1);
+                    forward(225,1);  //-40
                     robot.Claim.setPosition(robot.ClaimLevel);
+                    robot.Park.setPosition(0);
+                    sleep(9000);
                     break;
 
                 case RIGHT:
@@ -192,6 +215,8 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                     sleep(500);
                     backward(30,1);
                     sleep(500);
+                    robot.Rkick.setPosition(0); // close
+                    sleep(500);
                     turnleft(17,0.7);
                     sleep(500);
                     left(50,0.6);
@@ -202,6 +227,8 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                     forward(200,1);
                     robot.Rkick.setPosition(1);
                     robot.Claim.setPosition(robot.ClaimLevel);
+                    robot.Park.setPosition(0);
+                    sleep(9000);
                     break;
 
                 case UNKNOWN:
@@ -213,13 +240,17 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                     turnleft(22.5,0.6);
                     sleep(500);
                     left(80,1);
+                    sleep(500);
+                    backward(40,1);                 //+40
                     robot.Claim.setPosition(robot.ClaimThrow);
-                    forward(205,1);
+                    sleep(500);
+                    forward(225,1);  //-40
                     robot.Claim.setPosition(robot.ClaimLevel);
+                    robot.Park.setPosition(0);
+                    sleep(9000);
                     break;
         }
-
-                telemetry.update();
+        telemetry.update();
 
         /*robot.Lkick.setPosition(0.5);
         robot.Rkick.setPosition(0.5);*/
