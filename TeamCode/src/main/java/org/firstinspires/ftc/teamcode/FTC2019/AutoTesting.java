@@ -138,7 +138,7 @@ public class AutoTesting extends LinearOpMode {
         left(60,1);
         robot.Claim.setPosition(robot.ClaimThrow);
         sleep(500);
-        forward(250,1);
+        forward(240,1);
         robot.Claim.setPosition(robot.ClaimLevel);
         robot.Park.setPosition(0);
         sleep(9000);

@@ -85,6 +85,12 @@ public class FTC_2019_TestBot_Manual extends OpMode{
     /*    if (gamepad2.y){
             robot.Clip.setPower(-1);
         }*/
+        if (gamepad2.dpad_left){
+            robot.Park.setPosition(1);
+        }
+        else if (gamepad2.dpad_right) {
+            robot.Park.setPosition(0.7);
+        }
         if (gamepad2.right_bumper){
             robot.Flip.setPower(1);       //Flip Up
         }
@@ -107,21 +113,19 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         else if (gamepad2.left_bumper) {
             robot.Clip.setPower(-1);
         }*/
-
-        if (gamepad1.dpad_down){
-            robot.Latching.setPower(0.7);       //Latching DOWN
-            robot.Latching2.setPower(0.7);       //Latching DOWN
+        if (gamepad1.left_bumper){
+            robot.Latching.setPower(1);       //Latching DOWN
+            robot.Latching2.setPower(1);       //Latching DOWN
         }
-        else if (gamepad1.dpad_up){
-            robot.Latching.setPower(-0.7);      //Latching UP
-            robot.Latching2.setPower(-0.7);       //Latching UP
+        else if (gamepad1.right_bumper){
+            robot.Latching.setPower(-1);      //Latching UP
+            robot.Latching2.setPower(-1);       //Latching UP
 
         }
         else  {
             robot.Latching.setPower(0);
             robot.Latching2.setPower(0);
         }
-
  /*       if (gamepad2.right_bumper) {
             robot.Clip.setPower(1.0);
         }else if (gamepad2.left_bumper) {
