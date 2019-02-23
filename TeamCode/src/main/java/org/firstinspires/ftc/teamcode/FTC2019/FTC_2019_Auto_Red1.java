@@ -32,7 +32,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
 
         robot.Lkick.setPosition(0);
         robot.Rkick.setPosition(1);
-
+        robot.Park.setPosition(0.56);
         robot.Claim.setPosition(robot.ClaimLevel);
     }
 
@@ -61,6 +61,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
 
         robot.runModeSet("reset");
         robot.runModeSet("position");
+
 
         robot.Lfront.setTargetPosition(ValueForEncoder*LfrontEncoder);
         robot.Rfront.setTargetPosition(ValueForEncoder*RfrontEncoder);
@@ -134,7 +135,9 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
         vision.disable();// disables tracking algorithms
         Latching(1,-23500);
 
-
+        telemetry.addData("g1: ", vision.getTfLite().getG1());
+        telemetry.addData("s1: ", vision.getTfLite().getS1());
+        telemetry.addData("s2: ", vision.getTfLite().getS2());
         telemetry.addData("Gold: ", goldPosition);
         telemetry.update();
         switch (goldPosition){
@@ -208,7 +211,7 @@ public class FTC_2019_Auto_Red1 extends LinearOpMode {
                 case RIGHT:
                     telemetry.addLine("RIGHT");
                     sleep(9000);
-                    backward(35,0.6);
+                    backward(33,0.6);
                     Latching(1,0);
                     sleep(500);
                     turnright(45,0.6);

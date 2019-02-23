@@ -11,6 +11,8 @@ public class FTC_2019_TestBot_Manual extends OpMode{
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
     private boolean cp = true;
     private boolean clipb = true;
+    private boolean kk = true;
+    private boolean kick = true;
     @Override
     public void init(){
         robot.init(hardwareMap);
@@ -81,7 +83,28 @@ public class FTC_2019_TestBot_Manual extends OpMode{
                 cp=true;
             }
         }
-        if (gamepad2.x == false && clipb == false ) clipb=true;
+        if (gamepad2.x == false && clipb == false ){
+            if (cp){
+                robot.Clip.setPower(0);
+            }
+            clipb=true;
+        }
+
+        if (gamepad2.y && kick){
+            kick=false;
+            if (kk) {
+                robot.Lkick.setPosition(robot.kickopen);
+                robot.Rkick.setPosition(robot.kickopen);
+                kk=false;
+            } else {
+                robot.Lkick.setPosition(0);
+                robot.Rkick.setPosition(0);
+                kk=true;
+            }
+        }
+        if (gamepad2.y == false && kick == false ){
+            kick=true;
+        }
     /*    if (gamepad2.y){
             robot.Clip.setPower(-1);
         }*/
@@ -113,6 +136,8 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         else if (gamepad2.left_bumper) {
             robot.Clip.setPower(-1);
         }*/
+
+
         if (gamepad1.left_bumper){
             robot.Latching.setPower(1);       //Latching DOWN
             robot.Latching2.setPower(1);       //Latching DOWN
