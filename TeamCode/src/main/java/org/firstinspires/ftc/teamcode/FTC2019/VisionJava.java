@@ -14,6 +14,9 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 @Autonomous(name="VisionJava", group ="FTC 2019")
 
 public class VisionJava extends LinearOpMode {
+
+    FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
+
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -33,7 +36,10 @@ public class VisionJava extends LinearOpMode {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraDirection = CameraDirection.BACK;
+
+        //parameters.cameraName = robot.Webcam;  //use this when use webcam
+
+        parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 

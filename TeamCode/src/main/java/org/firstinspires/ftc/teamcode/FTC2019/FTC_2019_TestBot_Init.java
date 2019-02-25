@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+
 
 public class FTC_2019_TestBot_Init {
     //Dirve Motors
@@ -29,6 +31,8 @@ public class FTC_2019_TestBot_Init {
     public CRServo Clip;
     //parking
     public Servo Park;
+
+    public WebcamName Webcam;
 
     //Drive
     public double Lfronttmp = 0;
@@ -64,6 +68,8 @@ public class FTC_2019_TestBot_Init {
         Rkick = _hw.servo.get("Rkick");
 
         Claim = _hw.servo.get("Claim");
+
+        //Webcam = _hw.get(WebcamName.class, "Webcam");
 
         Flip = _hw.dcMotor.get("Flip");
         Clip = _hw.crservo.get("Clip");
