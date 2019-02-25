@@ -27,6 +27,8 @@ public class FTC_2019_TestBot_Init {
     public Servo Claim;
     //collector
     public CRServo Clip;
+    //parking
+    public Servo Park;
 
     //Drive
     public double Lfronttmp = 0;
@@ -65,6 +67,7 @@ public class FTC_2019_TestBot_Init {
 
         Flip = _hw.dcMotor.get("Flip");
         Clip = _hw.crservo.get("Clip");
+        Park = _hw.servo.get("Park");
         //LSlength = _hw.dcMotor.get("LSlength");
 
         //Latching.setDirection(DcMotorSimple.Direction.REVERSE);

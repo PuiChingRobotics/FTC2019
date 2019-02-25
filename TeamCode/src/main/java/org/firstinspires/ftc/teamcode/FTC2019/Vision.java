@@ -34,11 +34,8 @@ public class Vision extends LinearOpMode {
             telemetry.addData("s1: ", vision.getTfLite().getS1());
             telemetry.addData("s2: ", vision.getTfLite().getS2());
             telemetry.addData("GOLD AFTERRRR: ", vision.getTfLite().getLastKnownSampleOrder());
-
             goldPosition = vision.getTfLite().getLastKnownSampleOrder();
-
             telemetry.addData("Gold: ", goldPosition);
-
             telemetry.update();
 
         }

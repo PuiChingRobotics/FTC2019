@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 
-@Autonomous(name="FTC_2019_Auto_Red2", group ="FTC 2019")
+@Autonomous(name="FTC_2019_Auto_Red", group ="FTC 2019")
 
-public class FTC_2019_Auto_Red2 extends LinearOpMode {
+public class AutoTesting extends LinearOpMode {
 
     MasterVision vision;
     SampleRandomizedPositions goldPosition;
@@ -115,78 +115,42 @@ public class FTC_2019_Auto_Red2 extends LinearOpMode {
 
         initial();
 
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-        parameters.vuforiaLicenseKey = "AXkVpHb/////AAABmTAE3zZYuEAqmWdab0pJQ9EH65J/3Dw/hnjqLlsJ6Lj4NKskFaXCfQ0yl5QyhVTIJinYPJ/553/NPU1F9fkSkX8xtgKVMEWdDwF5DC6tqN4D74iEIEyJzvye3/W1Mmryu9dmxyAdWJq+zVxqTRE+ELaw2cZDPMHnXVQ2NFeHvM6Eq9hNgkxzB1dy0WiC5BdftcPrsPdVuKsGRaWhKwXD8N87uO4+xeZIkx6lw7R3wWDW9IcLL6fQophrM1bA4kvOUA/GHk+paW6bSr07BfWCckBbFduvgTLtL5VwRXMr8MqHF9Vk80oWQYWYin5KevhfgiN9UUdoVFfl01O4RfqSbDOJg/FH+adPJl5io3PahBsj\n";
-
-        vision = new org.firstinspires.ftc.teamcode.FTC2019.MasterVision(parameters, hardwareMap, false, MasterVision.TFLiteAlgorithm.INFER_NONE );
-        vision.init();// enables the camera overlay
-        vision.enable();// enables the tracking algorithms
-
         waitForStart();
 
-        vision.disable();// disables tracking algorithms
+        //Code for testing in Auto
+        backward(37,1);
+        Latching(1,0);
+        sleep(500);
+        turnleft(45,0.6);
+        sleep(500);
+        backward(30,1);
+        sleep(500);
+        turnright(45,0.6);
+        sleep(500);
+        backward(50,1);
+        sleep(1000);
+        turnright(20,0.6);
+        sleep(500);
+        backward(40,1);
+        sleep(1000);
+        turnleft(48,0.6);
+        sleep(500);
+        left(60,1);
+        robot.Claim.setPosition(robot.ClaimThrow);
+        sleep(500);
+        forward(240,1);
+        robot.Claim.setPosition(robot.ClaimLevel);
+        robot.Park.setPosition(0);
+        sleep(9000);
 
-        Latching(1,-23500);
-
-        goldPosition = vision.getTfLite().getLastKnownSampleOrder();
-
-
-        telemetry.addData("Gold: ", goldPosition);
-        telemetry.update();
-        switch (goldPosition){
-            case LEFT:
-                telemetry.addLine("LEFT");
-                sleep(9000);
-                backward(37,1);
-                Latching(1,0);
-                sleep(500);
-                right(60,0.7);
-                robot.Lkick.setPosition(robot.kickopen);
-                sleep(500);
-                backward(40,1);
-                robot.Lkick.setPosition(0);
-                sleep(10000);
-                break;
-
-            case CENTER:
-                telemetry.addLine("CENTER");
-                sleep(9000);
-                backward(65,1);
-                Latching(1,0);
-                sleep(10000);
-                break;
-
-            case RIGHT:
-                telemetry.addLine("RIGHT");
-                sleep(9000);
-                backward(37,1);
-                Latching(1,0);
-                sleep(500);
-                left(85,1);
-                sleep(500);
-                backward(40,1);
-                robot.Rkick.setPosition(1);
-                sleep(10000);
-                break;
-
-            case UNKNOWN:
-                telemetry.addLine("UNKNOWN");
-                sleep(9000);
-                backward(60,1);
-                Latching(1,0);
-                sleep(10000);
-                break;
-        }
-
-        telemetry.update();
-
-        /*robot.Lkick.setPosition(0.5);
-        robot.Rkick.setPosition(0.5);*/
-
-        //Latching(1,-23500);
-
-        vision.shutdown();
+   /*     turnleft(28,0.6);
+        sleep(500);
+        left(40,1);
+        robot.Claim.setPosition(robot.ClaimThrow);
+        sleep(500);
+        forward(315,1);
+        robot.Claim.setPosition(robot.ClaimLevel);
+        robot.Park.setPosition(0);*/
 
     }
 }

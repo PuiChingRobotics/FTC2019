@@ -127,11 +127,13 @@ public class FTC_2019_Auto_Blue2 extends LinearOpMode {
 
         vision.disable();// disables tracking algorithms
 
-        Latching(1,-23500);
+        Latching(1,-24000);
 
         goldPosition = vision.getTfLite().getLastKnownSampleOrder();
 
-
+        telemetry.addData("g1: ", vision.getTfLite().getG1());
+        telemetry.addData("s1: ", vision.getTfLite().getS1());
+        telemetry.addData("s2: ", vision.getTfLite().getS2());
         telemetry.addData("Gold: ", goldPosition);
         telemetry.update();
         switch (goldPosition){

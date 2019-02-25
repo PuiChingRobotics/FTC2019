@@ -77,16 +77,18 @@ public class FTC_2019_TestBot_Pit extends OpMode{
             robot.Latching2.setPower(-0.7);       //Latching UP
 
         }
-        if (gamepad1.dpad_right){
-
-        }
-        else if (gamepad1.dpad_left){
-
-        }
-
         else  {
             robot.Latching.setPower(0);
             robot.Latching2.setPower(0);
+        }
+
+        if (gamepad1.dpad_right){
+            robot.Lkick.setPosition(0);
+            robot.Rkick.setPosition(1);
+        }
+        else if (gamepad1.dpad_left){
+            robot.Lkick.setPosition(1);
+            robot.Rkick.setPosition(0);
         }
 
         if (gamepad1.x){
