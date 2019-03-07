@@ -21,12 +21,12 @@ public class VisionJava extends LinearOpMode {
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
 
-    private static final String VUFORIA_KEY = "AXkVpHb/////AAABmTAE3zZYuEAqmWdab0pJQ9EH65J/3Dw/hnjqLlsJ6Lj4NKskFaXCfQ0yl5QyhVTIJinYPJ/553/NPU1F9fkSkX8xtgKVMEWdDwF5DC6tqN4D74iEIEyJzvye3/W1Mmryu9dmxyAdWJq+zVxqTRE+ELaw2cZDPMHnXVQ2NFeHvM6Eq9hNgkxzB1dy0WiC5BdftcPrsPdVuKsGRaWhKwXD8N87uO4+xeZIkx6lw7R3wWDW9IcLL6fQophrM1bA4kvOUA/GHk+paW6bSr07BfWCckBbFduvgTLtL5VwRXMr8MqHF9Vk80oWQYWYin5KevhfgiN9UUdoVFfl01O4RfqSbDOJg/FH+adPJl5io3PahBsj\\n";
+    private static final String VUFORIA_KEY = "AYOt/WL/////AAAAGeXhpVbSYkXXoUl35+SCp44E3cSPcxzjqL8YJBMkFvN1mbI1fhFl6GbykmLuUNoB4uLm996Cv+2ygRNAVjbv7LeUkXvA2SeLdkKuMsu4bYqXYWtgcvKS6U21bK4L9DXTSl1wfNZsIil4uX/pdUYbhhgl6LD6PmLLFYrbkmRIq62C8R5cWeZZJaTXrR9ab/5cGv8kVIe7I67lISG8KbcQynqW2QrwEGf+4Aku7oRC0uU6jgz5krcPE6cVf4e6J/ohPI4ciQkhlxu+bJcPgIqs4euIaK109rwMWqMR7JcQKcBxCQrt0eUkiEpENzodJR8qSI2QO9Lop3J0zCCm3OGbXSkdLQu+4QZWb+jR2yDMQjvY";
 
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
-    public String goldmineral = null;
+    public String goldmineral = "UNKNOWN";
 
     public int g1 = 0;
     public int s1 = 0;
@@ -73,7 +73,7 @@ public class VisionJava extends LinearOpMode {
                 tfod.activate();
             }
 
-            while (opModeIsActive() && (goldmineral != null || Timer.seconds() > 10)) {
+            while (((goldmineral!="Left" && goldmineral!="Right" && goldmineral!="Center") || Timer.seconds() < 3) && Timer.seconds() < 10) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
