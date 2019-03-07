@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 
-@Autonomous(name="FTC_2019_Auto_Red", group ="FTC 2019")
+@Autonomous(name="AutoTesting", group ="FTC 2019")
 
 public class AutoTesting extends LinearOpMode {
 

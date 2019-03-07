@@ -61,19 +61,19 @@ public class FTC_2019_TestBot_Init {
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
 
-        Latching = _hw.dcMotor.get("Latching");
+        /*Latching = _hw.dcMotor.get("Latching");
         Latching2 = _hw.dcMotor.get("Latching2");
 
         Lkick = _hw.servo.get("Lkick");
         Rkick = _hw.servo.get("Rkick");
 
-        Claim = _hw.servo.get("Claim");
+        Claim = _hw.servo.get("Claim");*/
 
         //Webcam = _hw.get(WebcamName.class, "Webcam");
 
-        Flip = _hw.dcMotor.get("Flip");
+        /*Flip = _hw.dcMotor.get("Flip");
         Clip = _hw.crservo.get("Clip");
-        Park = _hw.servo.get("Park");
+        Park = _hw.servo.get("Park");*/
         //LSlength = _hw.dcMotor.get("LSlength");
 
         //Latching.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -81,10 +81,10 @@ public class FTC_2019_TestBot_Init {
         Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
         Lback.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        Rfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        Rfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 }
 
     public void runModeSet(String mode) {

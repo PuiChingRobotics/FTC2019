@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-@TeleOp(name="FTC_2019_TestBot_Manual", group="FTC 2018")
+@TeleOp(name="FTC_2019_TestBot_Manual_Test", group="FTC 2019")
 public class FTC_2019_TestBot_Manual_Test extends OpMode{
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
@@ -18,6 +18,7 @@ public class FTC_2019_TestBot_Manual_Test extends OpMode{
         robot.Rfront.setPower(0);
         robot.Lback.setPower(0);
         robot.Rback.setPower(0);
+        robot.runModeSet("encoder");
     }
 
     @Override
@@ -39,28 +40,11 @@ public class FTC_2019_TestBot_Manual_Test extends OpMode{
     @Override
     public void loop() {
 
-        double leftStickX = gamepad1.left_stick_x;
-        double leftStickY = -gamepad1.left_stick_y;
-        double rightStickX = gamepad1.right_stick_x;
-        double rightStickY = -gamepad1.right_stick_y;
-
-        double speed_new = 1-0.7;
-        double speed_old = 0.7;
         telemetry.addData("Running", "Robot 1");
 
         //player1
 
         //drive
-        robot.Lfrontforward = RoundDownDp(robot.Lfrontforward*speed_old+leftStickY*speed_new, 0.001);
-        robot.Rfrontforward = RoundDownDp(robot.Rfrontforward*speed_old+leftStickY*speed_new, 0.001);
-        robot.Lbackforward = RoundDownDp(robot.Lbackforward*speed_old+leftStickY*speed_new, 0.001);
-        robot.Rbackforward = RoundDownDp(robot.Rbackforward*speed_old+leftStickY*speed_new, 0.001);
-
-        robot.Lfronttmp = RoundDownDp(leftStickY*1+rightStickX*0.7+leftStickX*0.7, 0.001);
-        robot.Lbacktmp = RoundDownDp(leftStickY*1+rightStickX*0.7-leftStickX*0.7, 0.001);
-        robot.Rfronttmp = RoundDownDp(leftStickY*1-rightStickX*0.7-leftStickX*0.7, 0.001);
-        robot.Rbacktmp = RoundDownDp(leftStickY*1-rightStickX*0.7+leftStickX*0.7, 0.001);
-
         double leftstickx = 0;
         double leftsticky = 0;
         double rightstickx = 0;
@@ -114,22 +98,18 @@ public class FTC_2019_TestBot_Manual_Test extends OpMode{
         robot.Rback.setPower(rightrearpower);
 
         telemetry.addData("gamepad1", !gamepad1.atRest());
-        telemetry.addData("leftStickX", leftStickX);
-        telemetry.addData("leftStickY", leftStickY);
-        telemetry.addData("rightStickX", rightStickX);
-        telemetry.addData("rightStickY", rightStickY);
 
-        telemetry.addData("Lfrontforward", robot.Lfrontforward);
-        telemetry.addData("Rfrontforward", robot.Rfrontforward);
-        telemetry.addData("Lbackforward", robot.Lbackforward);
-        telemetry.addData("Rbackforward", robot.Rbackforward);
+        telemetry.addData("Lfrontforward", leftfrontpower);
+        telemetry.addData("Rfrontforward", rightfrontpower);
+        telemetry.addData("Lbackforward", leftrearpower);
+        telemetry.addData("Rbackforward", rightrearpower);
 
-        telemetry.addData("Lfronttmp", robot.Lfronttmp);
-        telemetry.addData("Rfronttmp", robot.Rfronttmp);
-        telemetry.addData("Lbacktmp", robot.Lbacktmp);
-        telemetry.addData("Rbacktmp", robot.Rbacktmp);
+        telemetry.addData("Lfronttmp", robot.Lfront.getPower());
+        telemetry.addData("Rfronttmp", robot.Rfront.getPower());
+        telemetry.addData("Lbacktmp", robot.Lback.getPower());
+        telemetry.addData("Rbacktmp", robot.Rback.getPower());
 
-        telemetry.addData("Flip", robot.Flip.getPower());
+        //telemetry.addData("Flip", robot.Flip.getPower());
 
         //Player2
         telemetry.update();

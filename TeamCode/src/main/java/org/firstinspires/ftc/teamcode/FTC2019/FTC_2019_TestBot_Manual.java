@@ -1,11 +1,11 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+        import com.qualcomm.robotcore.hardware.Gamepad;
+        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-@TeleOp(name="FTC_2019_TestBot_Manual", group="FTC 2018")
+@TeleOp(name="FTC_2019_TestBot_Manual", group="FTC 2019")
 public class FTC_2019_TestBot_Manual extends OpMode{
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
@@ -20,6 +20,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         robot.Rfront.setPower(0);
         robot.Lback.setPower(0);
         robot.Rback.setPower(0);
+        robot.runModeSet("encoder");
     }
 
     @Override
@@ -67,7 +68,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         robot.Lback.setPower(robot.Lbacktmp);
         robot.Rfront.setPower(robot.Rfronttmp);
         robot.Rback.setPower(robot.Rbacktmp);
-        if (gamepad1.y) {
+        /*if (gamepad1.y) {
             robot.Claim.setPosition(robot.ClaimLevel);  //Bk to Claim level
         }
         if (gamepad1.x) {
@@ -101,14 +102,14 @@ public class FTC_2019_TestBot_Manual extends OpMode{
                 robot.Rkick.setPosition(0);
                 kk=true;
             }
-        }
-        if (gamepad2.y == false && kick == false ){
+        }*/
+        /*if (gamepad2.y == false && kick == false ){
             kick=true;
-        }
+        }*/
     /*    if (gamepad2.y){
             robot.Clip.setPower(-1);
         }*/
-        if (gamepad2.dpad_left){
+        /*if (gamepad2.dpad_left){
             robot.Park.setPosition(1);
         }
         else if (gamepad2.dpad_right) {
@@ -128,7 +129,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         }
         else  {
             robot.Flip.setPower(0);
-        }
+        }*/
 
         /* if (gamepad2.right_bumper) {
             robot.Clip.setPower(1.0);
@@ -138,7 +139,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         }*/
 
 
-        if (gamepad1.left_bumper){
+        /*if (gamepad1.left_bumper){
             robot.Latching.setPower(1);       //Latching DOWN
             robot.Latching2.setPower(1);       //Latching DOWN
         }
@@ -150,7 +151,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         else  {
             robot.Latching.setPower(0);
             robot.Latching2.setPower(0);
-        }
+        }*/
  /*       if (gamepad2.right_bumper) {
             robot.Clip.setPower(1.0);
         }else if (gamepad2.left_bumper) {
@@ -181,7 +182,7 @@ public class FTC_2019_TestBot_Manual extends OpMode{
         telemetry.addData("Lbacktmp", robot.Lbacktmp);
         telemetry.addData("Rbacktmp", robot.Rbacktmp);
 
-        telemetry.addData("Flip", robot.Flip.getPower());
+        //telemetry.addData("Flip", robot.Flip.getPower());
 
             /*if (gamepad1.right_trigger > 0) {
                 robot.Lfront.setPower(0.5);
