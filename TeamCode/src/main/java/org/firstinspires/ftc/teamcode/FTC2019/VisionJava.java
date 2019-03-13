@@ -37,7 +37,7 @@ public class VisionJava extends LinearOpMode {
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
 
-        //parameters.cameraName = robot.Webcam;  //use this when use webcam
+        parameters.cameraName = robot.Webcam;  //use this when use webcam
 
         parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 

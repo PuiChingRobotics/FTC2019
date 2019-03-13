@@ -31,7 +31,7 @@ public class FTC_2019_TestBot_Init {
     public CRServo Clip;
     //parking
     public Servo Park;
-
+    //cam
     public WebcamName Webcam;
 
     //Drive
@@ -60,7 +60,7 @@ public class FTC_2019_TestBot_Init {
         Rfront = _hw.dcMotor.get("Rfront");
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
-
+        Webcam = _hw.get(WebcamName.class, "Webcam");
         /*Latching = _hw.dcMotor.get("Latching");
         Latching2 = _hw.dcMotor.get("Latching2");
 
