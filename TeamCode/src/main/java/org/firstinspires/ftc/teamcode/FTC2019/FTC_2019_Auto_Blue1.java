@@ -32,7 +32,7 @@ public class FTC_2019_Auto_Blue1 extends LinearOpMode {
 
         robot.Lkick.setPosition(0);
         robot.Rkick.setPosition(1);
-
+        robot.Park.setPosition(0.56);
         robot.Claim.setPosition(robot.ClaimLevel);
     }
 
@@ -61,6 +61,7 @@ public class FTC_2019_Auto_Blue1 extends LinearOpMode {
 
         robot.runModeSet("reset");
         robot.runModeSet("position");
+
 
         robot.Lfront.setTargetPosition(ValueForEncoder*LfrontEncoder);
         robot.Rfront.setTargetPosition(ValueForEncoder*RfrontEncoder);
@@ -119,46 +120,57 @@ public class FTC_2019_Auto_Blue1 extends LinearOpMode {
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         parameters.vuforiaLicenseKey = "AXkVpHb/////AAABmTAE3zZYuEAqmWdab0pJQ9EH65J/3Dw/hnjqLlsJ6Lj4NKskFaXCfQ0yl5QyhVTIJinYPJ/553/NPU1F9fkSkX8xtgKVMEWdDwF5DC6tqN4D74iEIEyJzvye3/W1Mmryu9dmxyAdWJq+zVxqTRE+ELaw2cZDPMHnXVQ2NFeHvM6Eq9hNgkxzB1dy0WiC5BdftcPrsPdVuKsGRaWhKwXD8N87uO4+xeZIkx6lw7R3wWDW9IcLL6fQophrM1bA4kvOUA/GHk+paW6bSr07BfWCckBbFduvgTLtL5VwRXMr8MqHF9Vk80oWQYWYin5KevhfgiN9UUdoVFfl01O4RfqSbDOJg/FH+adPJl5io3PahBsj\n";
 
-        vision = new org.firstinspires.ftc.teamcode.FTC2019.MasterVision(parameters, hardwareMap, false, MasterVision.TFLiteAlgorithm.INFER_NONE );
+        vision = new org.firstinspires.ftc.teamcode.FTC2019.MasterVision(parameters, hardwareMap, false, MasterVision.TFLiteAlgorithm.INFER_NONE);
         vision.init();// enables the camera overlay
         vision.enable();// enables the tracking algorithms
 
         waitForStart();
-
-        vision.disable();// disables tracking algorithms
-
-        Latching(1,-23500);
+        telemetry.addData("g1: ", vision.getTfLite().getG1());
+        telemetry.addData("s1: ", vision.getTfLite().getS1());
+        telemetry.addData("s2: ", vision.getTfLite().getS2());
+        telemetry.addData("GOLD AFTERRRR: ", vision.getTfLite().getLastKnownSampleOrder());
 
         goldPosition = vision.getTfLite().getLastKnownSampleOrder();
 
+        vision.disable();// disables tracking algorithms
+        Latching(1,-24000);  // -23500
 
+        telemetry.addData("g1: ", vision.getTfLite().getG1());
+        telemetry.addData("s1: ", vision.getTfLite().getS1());
+        telemetry.addData("s2: ", vision.getTfLite().getS2());
         telemetry.addData("Gold: ", goldPosition);
         telemetry.update();
         switch (goldPosition){
             case LEFT:
                 telemetry.addLine("LEFT");
                 sleep(9000);
-                backward(37,1);
+                backward(35,1);  //from 37
+                sleep(500);
                 Latching(1,0);
                 sleep(500);
                 turnleft(45,0.6);
                 sleep(500);
-                backward(95,1);
-                robot.Lkick.setPosition(robot.kickopen);
+                backward(30,1);
                 sleep(500);
-                turnright(67.5,0.6);
+                turnright(45,0.6);
                 sleep(500);
-                backward(120,1);
+                backward(50,1);
                 sleep(1000);
-                turnleft(45,0.6);
-                robot.Lkick.setPosition(0);
+                turnright(20,0.6);
                 sleep(500);
-                left(45,1);
+                backward(40,1);
+                sleep(1000);
+                turnleft(48,0.6);
+                sleep(500);
+                left(60,1);
                 robot.Claim.setPosition(robot.ClaimThrow);
                 sleep(500);
-                forward(300,1);
+                forward(240,1);
                 robot.Claim.setPosition(robot.ClaimLevel);
+                robot.Park.setPosition(0);
+                sleep(9000);
                 break;
+
 
             case CENTER:
                 telemetry.addLine("CENTER");
@@ -169,23 +181,33 @@ public class FTC_2019_Auto_Blue1 extends LinearOpMode {
                 turnleft(22.5,0.6);
                 sleep(500);
                 left(80,1);
+                sleep(500);
+                backward(40,1);                 //+40
                 robot.Claim.setPosition(robot.ClaimThrow);
-                forward(225,1);
+                sleep(500);
+                forward(225,1);  //-40
                 robot.Claim.setPosition(robot.ClaimLevel);
+                robot.Park.setPosition(0);
+                sleep(9000);
                 break;
 
             case RIGHT:
                 telemetry.addLine("RIGHT");
                 sleep(9000);
-                backward(35,0.6);
+                backward(33,0.6);
                 Latching(1,0);
                 sleep(500);
-                left(85,0.7);
+                turnright(45,0.6);
+                backward(55,0.7);
+                turnleft(45,0.6);
+                //                left(85,0.7);
                 robot.Rkick.setPosition(robot.kickopen);
                 sleep(500);
                 backward(30,1);
                 sleep(500);
-                turnleft(15,0.7);
+                robot.Rkick.setPosition(0); // close
+                sleep(500);
+                turnleft(17,0.7);
                 sleep(500);
                 left(50,0.6);
                 sleep(500);
@@ -195,13 +217,30 @@ public class FTC_2019_Auto_Blue1 extends LinearOpMode {
                 forward(200,1);
                 robot.Rkick.setPosition(1);
                 robot.Claim.setPosition(robot.ClaimLevel);
+                robot.Park.setPosition(0);
+                sleep(9000);
                 break;
 
             case UNKNOWN:
                 telemetry.addLine("UNKNOWN");
+                sleep(9000);
+                backward(115,1);
+                Latching(1,0);
+                sleep(500);
+                turnleft(22.5,0.6);
+                sleep(500);
+                left(80,1);
+                sleep(500);
+                backward(40,1);                 //+40
+                robot.Claim.setPosition(robot.ClaimThrow);
+                sleep(500);
+                forward(225,1);  //-40
+                robot.Claim.setPosition(robot.ClaimLevel);
+                robot.Park.setPosition(0);
+                sleep(9000);
                 break;
         }
-
+        robot.Park.setPosition(0.5);
         telemetry.update();
 
         /*robot.Lkick.setPosition(0.5);
