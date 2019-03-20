@@ -1,17 +1,13 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 
 @Autonomous(name="AutoTesting", group ="FTC 2019")
 
-public class AutoTesting extends LinearOpMode {
+public class AutoTesting extends Nav {
 
-    MasterVision vision;
-    SampleRandomizedPositions goldPosition;
-
+    /*MasterVision vision;
+    SampleRandomizedPositions goldPosition;*/
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
 
     public void initial(){
@@ -22,18 +18,8 @@ public class AutoTesting extends LinearOpMode {
         robot.Rback.setPower(0);
         robot.Lback.setPower(0);
 
-        robot.runModeSet("encoder");
         robot.runModeSet("reset");
-        robot.runModeSet("position");
-
-        robot.runModeSetLatching("encoder");
-        robot.runModeSetLatching("reset");
-        robot.runModeSetLatching("position");
-
-        robot.Lkick.setPosition(0);
-        robot.Rkick.setPosition(1);
-
-        robot.Claim.setPosition(robot.ClaimLevel);
+        robot.runModeSet("encoder");
     }
 
     public void Latching(double Power, int Posistion){
@@ -115,10 +101,21 @@ public class AutoTesting extends LinearOpMode {
 
         initial();
 
-        waitForStart();
+        Nav_Init();
+
+        //go_forward(14, 135, -.4, true);
+
+        go_sideways(90, 0, .5, 15);
+
+        telemetry.addData("encoder",robot.Lfront.getCurrentPosition());
+        telemetry.addData("encoder2",robot.Rfront.getCurrentPosition());
+        telemetry.addData("encoder3",robot.Lback.getCurrentPosition());
+        telemetry.addData("encoder4",robot.Rback.getCurrentPosition());
+
+        telemetry.update();
 
         //Code for testing in Auto
-        backward(37,1);
+        /*backward(37,1);
         Latching(1,0);
         sleep(500);
         turnleft(45,0.6);
@@ -141,7 +138,7 @@ public class AutoTesting extends LinearOpMode {
         forward(240,1);
         robot.Claim.setPosition(robot.ClaimLevel);
         robot.Park.setPosition(0);
-        sleep(9000);
+        sleep(9000);*/
 
    /*     turnleft(28,0.6);
         sleep(500);
@@ -151,6 +148,8 @@ public class AutoTesting extends LinearOpMode {
         forward(315,1);
         robot.Claim.setPosition(robot.ClaimLevel);
         robot.Park.setPosition(0);*/
+
+        sleep(10000);
 
     }
 }
