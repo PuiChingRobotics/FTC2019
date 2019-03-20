@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -33,6 +34,8 @@ public class FTC_2019_TestBot_Init {
     public Servo Park;
     //cam
     public WebcamName Webcam;
+    //imu
+    BNO055IMU imu;
 
     //Drive
     public double Lfronttmp = 0;
@@ -60,7 +63,11 @@ public class FTC_2019_TestBot_Init {
         Rfront = _hw.dcMotor.get("Rfront");
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
+
         Webcam = _hw.get(WebcamName.class, "Webcam");
+
+        imu = _hw.get(BNO055IMU.class, "imu");
+
         /*Latching = _hw.dcMotor.get("Latching");
         Latching2 = _hw.dcMotor.get("Latching2");
 

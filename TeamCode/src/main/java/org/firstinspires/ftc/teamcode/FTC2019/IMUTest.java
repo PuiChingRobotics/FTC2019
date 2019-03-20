@@ -15,10 +15,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 @TeleOp(name = "IMU", group = "Test Code")
 public class IMUTest extends LinearOpMode {
-    BNO055IMU imu;
+
+    FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
 
     @Override public void runOpMode() {
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        robot.imu = hardwareMap.get(BNO055IMU.class, "imu");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -26,15 +27,15 @@ public class IMUTest extends LinearOpMode {
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
-        imu.initialize(parameters);
-        imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+        robot.imu.initialize(parameters);
+        robot.imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
         parameters.mode = BNO055IMU.SensorMode.IMU;
 
         telemetry.addData("Please Press Start", "");
         waitForStart();
 
         while (opModeIsActive()) {
-            Orientation orientation = imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+            Orientation orientation = robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
 
             telemetry.addData("X Heading", orientation.firstAngle);
             telemetry.addData("Y Heading", orientation.secondAngle);
