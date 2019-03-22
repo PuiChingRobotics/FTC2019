@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -8,6 +9,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.Position;
+import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 
 public class FTC_2019_TestBot_Init {
@@ -92,6 +95,17 @@ public class FTC_2019_TestBot_Init {
         Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        //imu init
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+        imu.initialize(parameters);
+        imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+        parameters.mode = BNO055IMU.SensorMode.IMU;
 }
 
     public void runModeSet(String mode) {

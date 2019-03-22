@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 
-@TeleOp(name = "IMU", group = "Test Code")
+@TeleOp(name = "IMU", group = "FTC2019")
 public class IMUTest extends LinearOpMode {
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();

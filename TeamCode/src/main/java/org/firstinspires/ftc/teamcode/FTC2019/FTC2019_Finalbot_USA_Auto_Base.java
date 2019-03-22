@@ -5,6 +5,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
@@ -17,6 +21,8 @@ import java.util.List;
 public class FTC2019_Finalbot_USA_Auto_Base extends LinearOpMode {
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
+
+    String turn;
 
     public void initial(){
 
@@ -106,6 +112,47 @@ public class FTC2019_Finalbot_USA_Auto_Base extends LinearOpMode {
     {
         SetDistanceToGo(Distance, Power,1,-1,1,-1);
     }
+
+    public void turn (double Angle, double Power) {
+        double TargetAngle = 0;
+
+        Orientation orientation = robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+        robot.runModeSet("encoder");
+
+        if (Angle < 0){
+            turn = "left";
+            TargetAngle = 360 + Angle;
+        }
+        else {
+            turn = "right";
+            TargetAngle = Angle;
+        }
+
+        if(turn == "right"){
+                while (orientation.thirdAngle < TargetAngle && opModeIsActive()){
+                    robot.Lfront.setPower(Power);
+                    robot.Rfront.setPower(Power*-1);
+                    robot.Lback.setPower(Power);
+                    robot.Rback.setPower(Power*-1);
+                }
+        }
+        else{           //turn left
+            while (orientation.thirdAngle > TargetAngle){
+                robot.Lfront.setPower(Power*-1);
+                robot.Rfront.setPower(Power);
+                robot.Lback.setPower(Power*-1);
+                robot.Rback.setPower(Power);
+            }
+        }
+
+        robot.Lfront.setPower(0);
+        robot.Rfront.setPower(0);
+        robot.Lback.setPower(0);
+        robot.Rback.setPower(0);
+
+    }
+
+
     public void left(double Distance, double Power)
     {
         SetDistanceToGo(Distance, Power,-1,1,1,-1);
@@ -152,6 +199,8 @@ public class FTC2019_Finalbot_USA_Auto_Base extends LinearOpMode {
     }
 
     public void runOpMode() {
+
+        robot.init(hardwareMap);
 
         initVuforia();
 

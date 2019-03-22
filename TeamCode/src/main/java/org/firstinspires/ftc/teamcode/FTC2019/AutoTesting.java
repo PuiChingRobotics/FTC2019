@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
+
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name="AutoTesting", group ="FTC 2019")
@@ -9,6 +11,7 @@ public class AutoTesting extends Nav {
     /*MasterVision vision;
     SampleRandomizedPositions goldPosition;*/
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
+
 
     public void initial(){
 
