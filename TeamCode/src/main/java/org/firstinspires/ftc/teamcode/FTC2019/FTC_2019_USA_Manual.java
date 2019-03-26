@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-@TeleOp(name="FTC_2019_USA_Manual", group="FTC 2018")
+@TeleOp(name="FTC_2019_USA_Manual", group="FTC 201(")
 public class FTC_2019_USA_Manual extends OpMode{
 
     FTC_2019_USA_Init robot = new FTC_2019_USA_Init();

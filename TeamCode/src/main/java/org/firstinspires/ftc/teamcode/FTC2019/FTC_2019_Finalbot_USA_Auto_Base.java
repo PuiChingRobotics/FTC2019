@@ -16,9 +16,9 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name="VisionJava", group ="FTC 2019")
+@Autonomous(name="FTC_2019_Finalbot_USA_Auto_Base", group ="FTC 2019")
 
-public class FTC_2019_Finalbot_USA_Auto_Base extends LinearOpMode {
+public class FTC_2019_Finalbot_USA_Auto_Base extends Nav {
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
 
@@ -204,6 +204,8 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends LinearOpMode {
 
         initVuforia();
 
+        Nav_Init();
+
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         } else {
@@ -274,7 +276,7 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends LinearOpMode {
         //Codes put bellow here
         switch (goldmineral){
             case "Left":
-
+                go_forward(10,0,1,false);
 
 
                 break;

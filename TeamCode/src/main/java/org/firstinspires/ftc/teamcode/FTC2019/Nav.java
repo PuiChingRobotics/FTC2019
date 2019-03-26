@@ -39,7 +39,6 @@ abstract public class Nav extends LinearOpMode {
 
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(IMUParameters);
-        waitForStart();
     }
 
     public void turn_to_heading(double target_heading) {

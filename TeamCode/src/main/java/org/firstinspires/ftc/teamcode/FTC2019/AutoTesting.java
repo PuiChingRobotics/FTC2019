@@ -106,6 +106,8 @@ public class AutoTesting extends Nav {
 
         Nav_Init();
 
+        waitForStart();
+
         //go_forward(14, 135, -.4, true);
 
         go_sideways(90, 0, .5, 15);
