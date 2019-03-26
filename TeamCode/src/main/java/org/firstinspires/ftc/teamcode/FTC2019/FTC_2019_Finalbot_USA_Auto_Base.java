@@ -18,7 +18,7 @@ import java.util.List;
 
 @Autonomous(name="VisionJava", group ="FTC 2019")
 
-public class FTC2019_Finalbot_USA_Auto_Base extends LinearOpMode {
+public class FTC_2019_Finalbot_USA_Auto_Base extends LinearOpMode {
 
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
 

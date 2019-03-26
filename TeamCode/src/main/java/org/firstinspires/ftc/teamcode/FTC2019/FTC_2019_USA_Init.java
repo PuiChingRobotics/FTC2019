@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 
 public class FTC_2019_USA_Init {
@@ -14,6 +17,10 @@ public class FTC_2019_USA_Init {
     public DcMotor Lback;
     public DcMotor Rback;
 
+    //Latching
+    public DcMotor Latch;
+    //LS no.1
+    public DcMotor LS1;
 
     //Drive
     public double Lfronttmp = 0;
@@ -32,6 +39,11 @@ public class FTC_2019_USA_Init {
     public final double ClaimLevel = 0.43;
     public final double ClaimThrow = 1;
 
+    //cam
+    public WebcamName Webcam;
+    //imu
+    BNO055IMU imu;
+
     public HardwareMap _hw;
 
     public void init(HardwareMap hw){
@@ -41,6 +53,18 @@ public class FTC_2019_USA_Init {
         Rfront = _hw.dcMotor.get("Rfront");
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
+
+        Webcam = _hw.get(WebcamName.class, "Webcam");
+
+        imu = _hw.get(BNO055IMU.class, "imu");
+
+        Latch = _hw.dcMotor.get("Latch");
+
+        LS1 = _hw.dcMotor.get("LS1");
+
+
+
+
         //LSlength = _hw.dcMotor.get("LSlength");
 
         //Latching.setDirection(DcMotorSimple.Direction.REVERSE);
