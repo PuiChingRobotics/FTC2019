@@ -129,15 +129,35 @@ public class FTC_2019_USA_Manual extends OpMode{
             robot.MCL.setPosition(0.3);
         }
         else if (gamepad1.y){
-            robot.MCR.setPosition(0);
-            robot.MCL.setPosition(1);
+            robot.MCR.setPosition(0.2);
+            robot.MCL.setPosition(0.8);
         }
 
-        if (gamepad1.b){
+        if (gamepad2.b){
             robot.MC.setPower(1);
         }
-        else{
+        else if (gamepad2.a){
             robot.MC.setPower(0);
+        }
+
+        if (gamepad2.x){
+            robot.MCRotate.setPower(1);
+        }
+        else if (gamepad2.y){
+            robot.MCRotate.setPower(-1);
+        }
+        else {
+            robot.MCRotate.setPower(0);
+        }
+
+        if (gamepad2.left_bumper){
+            robot.LS1.setPower(1);
+        }
+        else if (gamepad2.right_bumper){
+            robot.LS1.setPower(-0.5);
+        }
+        else {
+            robot.LS1.setPower(0);
         }
 
             /*if (gamepad1.right_trigger > 0) {

@@ -217,7 +217,6 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends Nav {
         waitForStart();
         turn(90,0.6);
         turn(180,0.6);
-        break;
         ElapsedTime Timer = new ElapsedTime();
         Timer.reset();
         if (opModeIsActive()) {
