@@ -18,7 +18,7 @@ public class Latching_Testing extends OpMode{
         robot.Rfront.setPower(0);
         robot.Lback.setPower(0);
         robot.Rback.setPower(0);
-        robot.runModeSet("encoder");
+        robot.LS2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     @Override
@@ -33,20 +33,20 @@ public class Latching_Testing extends OpMode{
 
     @Override
     public void loop() {
-
+        init();
         if (gamepad1.dpad_up){
-            robot.Latch.setPower(1);
+            robot.LS2.setPower(1);
         }
         else if (gamepad1.dpad_down){
-            robot.Latch.setPower(-1);
+            robot.LS2.setPower(-1);
         }
         else {
-            robot.Latch.setPower(0);
+            robot.LS2.setPower(0);
         }
 
         //reset
         if (gamepad1.x){
-            robot.Latch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.LS2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
 
         telemetry.addData("Encoder",robot.Latch.getCurrentPosition());

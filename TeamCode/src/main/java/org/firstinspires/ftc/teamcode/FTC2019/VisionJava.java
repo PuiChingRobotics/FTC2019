@@ -39,21 +39,25 @@ public class VisionJava extends LinearOpMode {
 
         parameters.cameraName = robot.Webcam;  //use this when use webcam
 
-        parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
+       // parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
+   //     vuforia.enableConvertFrameToFormat()
     }
 
     private void initTfod() {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        vuforia.enableConvertFrameToFormat(1) ;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
 
     public void runOpMode() {
+
+        robot.init(hardwareMap);
 
         initVuforia();
 

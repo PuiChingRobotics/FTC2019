@@ -10,7 +10,7 @@ public class FTC_2019_TestBot_Manual_Test extends OpMode{
     FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
 
     double speedmodifier = 1;
-
+    
     @Override
     public void init(){
         robot.init(hardwareMap);

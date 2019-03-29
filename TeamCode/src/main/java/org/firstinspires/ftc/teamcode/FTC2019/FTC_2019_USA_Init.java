@@ -16,13 +16,21 @@ public class FTC_2019_USA_Init {
     public DcMotor Rfront;
     public DcMotor Lback;
     public DcMotor Rback;
-
-    //Latching
-    public DcMotor Latch;
     //LS no.1
     public DcMotor LS1;
+    //Latching
+    public DcMotor Latch;
+    //MCRotate
+    public DcMotor MCRotate;
+    //LS no.2
+    public DcMotor LS2;
 
+    //MC
+    public CRServo MC;
+    public Servo MCL;
+    public Servo MCR;
     //Drive
+    public Servo Hammer;
     public double Lfronttmp = 0;
     public double Lbacktmp = 0;
     public double Rfronttmp = 0;
@@ -32,12 +40,6 @@ public class FTC_2019_USA_Init {
     public double Lbackforward = 0;
     public double Rfrontforward = 0;
     public double Rbackforward = 0;
-
-    //Both Kick Servo Posistion
-    public final double kickopen = 0.5;
-    //Claim Servo Position
-    public final double ClaimLevel = 0.43;
-    public final double ClaimThrow = 1;
 
     //cam
     public WebcamName Webcam;
@@ -54,6 +56,18 @@ public class FTC_2019_USA_Init {
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
 
+        MCRotate = _hw.dcMotor.get("MCRotate");
+
+        LS2 = _hw.dcMotor.get("LS2");
+
+        Hammer = _hw.servo.get("Hammer");
+
+        MCL = _hw.servo.get("MCL");
+        MCR = _hw.servo.get("MCR");
+
+        MC = _hw.crservo.get("MC");
+
+
         Webcam = _hw.get(WebcamName.class, "Webcam");
 
         imu = _hw.get(BNO055IMU.class, "imu");
@@ -62,13 +76,6 @@ public class FTC_2019_USA_Init {
 
         LS1 = _hw.dcMotor.get("LS1");
 
-
-
-
-        //LSlength = _hw.dcMotor.get("LSlength");
-
-        //Latching.setDirection(DcMotorSimple.Direction.REVERSE);
-
         Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
         Lback.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -76,6 +83,11 @@ public class FTC_2019_USA_Init {
         Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+        LS1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        MCRotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 }
 
     public void runModeSet(String mode) {
