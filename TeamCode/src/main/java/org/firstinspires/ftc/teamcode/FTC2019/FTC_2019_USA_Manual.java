@@ -11,10 +11,6 @@ public class FTC_2019_USA_Manual extends OpMode{
 
     double speedmodifier = 1;
 
-    private boolean cp = true;
-    private boolean clipb = true;
-    private boolean kk = true;
-    private boolean kick = true;
     @Override
     public void init(){
         robot.init(hardwareMap);
@@ -33,12 +29,6 @@ public class FTC_2019_USA_Manual extends OpMode{
     @Override
     public void start(){
 
-    }
-
-    public double RoundDownDp(double value, double place){
-        double result = value / place;
-        result = Math.floor(result)*place;
-        return result;
     }
 
     @Override
@@ -97,16 +87,18 @@ public class FTC_2019_USA_Manual extends OpMode{
         robot.Lback.setPower(leftrearpower);
         robot.Rback.setPower(rightrearpower);
 
-        /*if (gamepad1.x){
+
+        //Control Latching
+        if (gamepad1.x){
             robot.Latch.setPower(1);
         }
         else if (gamepad1.y){
             robot.Latch.setPower(-1);
         }else{
             robot.Latch.setPower(0);
-        }*/
+        }
 
-
+        //Control LS(s)
         if (gamepad1.right_bumper){ //Down
             robot.LS2.setPower(-1);
         }
@@ -124,14 +116,14 @@ public class FTC_2019_USA_Manual extends OpMode{
             robot.Hammer.setPosition(0.03);
         }
 
-        if (gamepad1.x){ //back
+        /*if (gamepad1.x){ //back
             robot.MCR.setPosition(0.7);
             robot.MCL.setPosition(0.3);
         }
         else if (gamepad1.y){
             robot.MCR.setPosition(0.2);
             robot.MCL.setPosition(0.8);
-        }
+        }*/
 
         if (gamepad2.b){
             robot.MC.setPower(1);
@@ -159,18 +151,6 @@ public class FTC_2019_USA_Manual extends OpMode{
         else {
             robot.LS1.setPower(0);
         }
-
-            /*if (gamepad1.right_trigger > 0) {
-                robot.Lfront.setPower(0.5);
-                robot.Lback.setPower(0.5);
-                robot.Rfront.setPower(0.5);
-                robot.Rback.setPower(0.5);
-            } else if (gamepad1.left_trigger > 0) {
-                robot.Lfront.setPower(-0.5);
-                robot.Lback.setPower(-0.5);
-                robot.Rfront.setPower(-0.5);
-                robot.Rback.setPower(-0.5);
-            }*/
 
         //Player2
         telemetry.update();

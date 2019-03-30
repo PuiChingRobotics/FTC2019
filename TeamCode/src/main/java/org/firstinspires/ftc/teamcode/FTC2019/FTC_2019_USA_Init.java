@@ -48,7 +48,7 @@ public class FTC_2019_USA_Init {
 
     public HardwareMap _hw;
 
-    public void init(HardwareMap hw){
+    public void init(HardwareMap hw) {
         _hw = hw;
 
         Lfront = _hw.dcMotor.get("Lfront");
@@ -88,7 +88,7 @@ public class FTC_2019_USA_Init {
         LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         MCRotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-}
+    }
 
     public void runModeSet(String mode) {
         if (mode == "position") {
@@ -96,40 +96,22 @@ public class FTC_2019_USA_Init {
             Lback.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Rfront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Rback.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        else if (mode == "reset") {
+        } else if (mode == "reset") {
             Lfront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             Lback.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             Rfront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             Rback.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        }
-        else if (mode == "tele") {
+        } else if (mode == "tele") {
             Lfront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             Lback.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             Rfront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             Rback.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-        else if (mode == "encoder") {
+        } else if (mode == "encoder") {
             Lfront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Lback.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Rfront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Rback.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-
- /*   public void runModeSetLatching (String mode) {
-        if (mode == "position") {
-            Latching.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Latching2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        else if (mode == "reset") {
-            Latching.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            Latching2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        }
-        else if (mode == "encoder") {
-            Latching.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            Latching2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }*/
 }
 
