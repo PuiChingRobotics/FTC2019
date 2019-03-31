@@ -112,7 +112,6 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends Nav {
     {
         SetDistanceToGo(Distance, Power,1,-1,1,-1);
     }
-
     public void turn (double Angle, double Power) {
         double TargetAngle = 0;
 

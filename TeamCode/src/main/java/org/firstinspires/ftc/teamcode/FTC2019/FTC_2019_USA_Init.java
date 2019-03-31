@@ -46,6 +46,8 @@ public class FTC_2019_USA_Init {
     //imu
     BNO055IMU imu;
 
+    public double Latch_Limit = -10500;
+
     public HardwareMap _hw;
 
     public void init(HardwareMap hw) {

@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
 public class VisionJava extends LinearOpMode {
 
-    FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
+    FTC_2019_USA_Init robot = new FTC_2019_USA_Init();
 
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";

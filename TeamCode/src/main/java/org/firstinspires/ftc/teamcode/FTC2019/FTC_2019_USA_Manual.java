@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.FTC2019;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 @TeleOp(name="FTC_2019_USA_Manual", group="FTC 2019")
@@ -21,6 +22,11 @@ public class FTC_2019_USA_Manual extends OpMode {
         robot.Lback.setPower(0);
         robot.Rback.setPower(0);
         robot.runModeSet("encoder");
+        robot.Latch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Latch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.MCRotate.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.MCRotate.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.MCRotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
@@ -93,10 +99,10 @@ public class FTC_2019_USA_Manual extends OpMode {
 
                 //Player 1
                 //Latching
-                if (gamepad1.left_bumper) {
-                    robot.Latch.setPower(1);
-                } else if (gamepad1.right_bumper) {
+                if (gamepad1.left_bumper && robot.Latch.getCurrentPosition() > robot.Latch_Limit) {
                     robot.Latch.setPower(-1);
+                } else if (gamepad1.right_bumper) {
+                    robot.Latch.setPower(1);
                 } else {
                     robot.Latch.setPower(0);
                 }
@@ -110,6 +116,21 @@ public class FTC_2019_USA_Manual extends OpMode {
                     robot.LS2.setPower(0);
                 }
 
+                //MC Servo(s)
+                if (gamepad1.x){ //back
+                    robot.MCR.setPosition(0.7);
+                    robot.MCL.setPosition(0.3);
+                }
+                else if (gamepad1.y){
+                    robot.MCR.setPosition(0.2);
+                    robot.MCL.setPosition(0.8);
+                }
+
+                if (gamepad2.left_stick_button)
+                {
+                    robot.MCR.setPosition(0.45);
+                    robot.MCL.setPosition(0.55);
+                }
                 //Player 2
                 //Sorter Position
                 if (gamepad2.dpad_up) {
@@ -148,23 +169,17 @@ public class FTC_2019_USA_Manual extends OpMode {
                     Sweep = true;
                 }
 
-                //MC Servo(s)
-                if (gamepad1.x){ //back
-                    robot.MCR.setPosition(0.7);
-                    robot.MCL.setPosition(0.3);
-                }
-                else if (gamepad1.y){
-                    robot.MCR.setPosition(0.2);
-                    robot.MCL.setPosition(0.8);
-                }
-                //MC Motor Rotation
-                if (gamepad2.left_trigger > 0.1) {
+        //MC Motor Rotation
+        if (gamepad2.left_trigger > 0.1) {
+                    robot.MCRotate.setTargetPosition(-500);
                     robot.MCRotate.setPower(gamepad2.left_trigger);
-                } else if (gamepad2.right_trigger > 0.1) {
-                    robot.MCRotate.setPower(-gamepad2.right_trigger);
-                } else {
+        } else if (gamepad2.right_trigger > 0.1) {
+                    robot.MCRotate.setTargetPosition(-150);
+                    robot.MCRotate.setPower(gamepad2.right_trigger);
+        }
+        else{
                     robot.MCRotate.setPower(0);
-                }
+        }
 
                 //Sorter LS
                 if (gamepad2.left_bumper) {
@@ -174,6 +189,7 @@ public class FTC_2019_USA_Manual extends OpMode {
                 } else {
                     robot.LS1.setPower(0);
                 }
+                telemetry.addData("MCRotate",robot.MCRotate.getCurrentPosition());
                 telemetry.update();
             }
 

@@ -15,7 +15,7 @@ import java.util.List;
 
 abstract public class Nav extends LinearOpMode {
 
-    FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
+    FTC_2019_USA_Init robot = new FTC_2019_USA_Init();
 
     BNO055IMU imu;
     Orientation angles;
@@ -191,7 +191,7 @@ abstract public class Nav extends LinearOpMode {
             highest_ticks_traveled = Math.max(highest_ticks_traveled_l, highest_ticks_traveled_r);
 
             if (gotocrater) {
-                if (highest_ticks_traveled - lowest_ticks_traveled > 75) {
+                if (highest_ticks_traveled - lowest_ticks_traveled > 150) {
                     craterhit = true;
                 }
             }

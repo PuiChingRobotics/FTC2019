@@ -16,7 +16,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 @TeleOp(name = "IMU", group = "FTC2019")
 public class IMUTest extends LinearOpMode {
 
-    FTC_2019_TestBot_Init robot = new FTC_2019_TestBot_Init();
+    FTC_2019_USA_Init robot = new FTC_2019_USA_Init();
 
     @Override public void runOpMode() {
         robot.imu = hardwareMap.get(BNO055IMU.class, "imu");
