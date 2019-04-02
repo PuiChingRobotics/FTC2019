@@ -33,9 +33,8 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         robot.Rback.setPower(0);
         robot.Lback.setPower(0);
 
-        robot.runModeSet("encoder");
         robot.runModeSet("reset");
-        robot.runModeSet("position");
+        robot.runModeSet("encoder");
 
         robot.Latch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.Latch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -163,7 +162,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
 
-    private static final String VUFORIA_KEY = "AXkVpHb/////AAABmTAE3zZYuEAqmWdab0pJQ9EH65J/3Dw/hnjqLlsJ6Lj4NKskFaXCfQ0yl5QyhVTIJinYPJ/553/NPU1F9fkSkX8xtgKVMEWdDwF5DC6tqN4D74iEIEyJzvye3/W1Mmryu9dmxyAdWJq+zVxqTRE+ELaw2cZDPMHnXVQ2NFeHvM6Eq9hNgkxzB1dy0WiC5BdftcPrsPdVuKsGRaWhKwXD8N87uO4+xeZIkx6lw7R3wWDW9IcLL6fQophrM1bA4kvOUA/GHk+paW6bSr07BfWCckBbFduvgTLtL5VwRXMr8MqHF9Vk80oWQYWYin5KevhfgiN9UUdoVFfl01O4RfqSbDOJg/FH+adPJl5io3PahBsj\\n";
+    private static final String VUFORIA_KEY = "AY8TKWz/////AAABmVxCzalxrU1fupYh/xwHhc46D6Xbwe+vCr4oD8Z4xAyjlTIiFRZ3aYKRHB+QZ89PLKp9XsgoskoC6x9t0udnNkbAV8pKqQqcd1NDQyBWhza6GIccC7BLF63DdSGidSqut5hZ7BGzXRo9m9CAgBqq1rPgNdyEncD4MnPJryST0Tzv0UDuJpiVu04Fub2ErVH9gVadMw5VDzgLKQCRSCHTD/jnXN2Tyw9agjtfMf3rbmg+1jVniX5RsQCbpAdH+Vj/yWAuH1bbYw46FGmDI7RoAuUVsKuVgD0WuDG0fduLZNyHG+d/L7DG7zANu62mHaBDCGkiblTr+QnkBu1JC+ZZWd9XVaXzIwBkEbG6UYfN79fy";
 
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
@@ -174,14 +173,14 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
     public int s1 = 0;
     public int s2 = 0;
 
-   /* private void initVuforia() {
+    private void initVuforia() {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
 
-        //parameters.cameraName = robot.Webcam;  //use this when use webcam
+        parameters.cameraName = robot.Webcam;  //use this when use webcam
 
-        parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
+        //parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
@@ -193,40 +192,38 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
-    }*/
+    }
 
     public void runOpMode() {
 
         initial();
 
-        //initVuforia();
+        initVuforia();
 
         Nav_Init();
 
 
-    /*    if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         } else {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }*/
+        }
 
-        telemetry.addData(">",robot.Latch.getCurrentPosition());
+        //telemetry.addData(">",robot.Latch.getCurrentPosition());
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
-        Latching(1,robot.Latch_Limit);
-        while (robot.Latch.isBusy()){
-            telemetry.addData(">",robot.Latch.getCurrentPosition());
-            telemetry.update();
-        }
-     /*   ElapsedTime Timer = new ElapsedTime();
+        /*Latching(1,robot.Latch_Limit);
+        sleep(9000);
+        telemetry.addData(">",robot.Latch.getCurrentPosition());*/
+        ElapsedTime Timer = new ElapsedTime();
         Timer.reset();
         if (opModeIsActive()) {
             if (tfod != null) {
                 tfod.activate();
             }
 
-            while (opModeIsActive() && (goldmineral != null || Timer.seconds() > 10)) {
+            while (((goldmineral!="Left" && goldmineral!="Right" && goldmineral!="Center") || Timer.seconds() < 3) && Timer.seconds() < 10) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -276,10 +273,13 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
 
         if (tfod != null) {
             tfod.shutdown();
-        }*/
+        }
         //Codes put bellow here
+
+        telemetry.addData("Correct2",robot.Latch.getCurrentPosition());
+        telemetry.update();
         goldmineral="UNKNOWN";
-        /*switch (goldmineral){
+        switch (goldmineral){
             case "Left":
                 telemetry.addLine("LEFT");
                 go_forward(  20/2.54,0,1,false);
@@ -294,7 +294,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
             case "Center":
                 telemetry.addLine("Center");
                 sleep(5000);
-                go_forward(  60/2.54,0,1,true);
+                go_forward(  60/2.54,0,1,false);
                 sleep(3000);
                 Latching(1,0);
                 sleep(10000);
@@ -311,14 +311,15 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
                 sleep(3000);
                 break;
             case "UNKNOWN":
-                go_sideways(225,0,1, 60/2.54);
-                sleep(3000);
-                go_forward(  50/2.54,0,1,true);
-                sleep(3000);
-                turn_to_heading(90);
-                sleep(3000);
+                go_sideways(225,0,0.7, 70);
+                sleep(500);
+                go_forward(10,0,1,false);
+                sleep(500);
+                turn_to_heading(135);
+                sleep(500);
+                go_sideways(90,135,0.5, 40);
                 break;
-        }*/
+        }
 
 
 

@@ -224,7 +224,7 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
                 tfod.activate();
             }
 
-            while (opModeIsActive() && (goldmineral != null || Timer.seconds() > 10)) {
+            while (((goldmineral!="Left" && goldmineral!="Right" && goldmineral!="Center") || Timer.seconds() < 3) && Timer.seconds() < 10) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.

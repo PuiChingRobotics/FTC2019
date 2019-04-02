@@ -21,7 +21,7 @@ public class VisionJava extends LinearOpMode {
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
 
-    private static final String VUFORIA_KEY = "AYOt/WL/////AAAAGeXhpVbSYkXXoUl35+SCp44E3cSPcxzjqL8YJBMkFvN1mbI1fhFl6GbykmLuUNoB4uLm996Cv+2ygRNAVjbv7LeUkXvA2SeLdkKuMsu4bYqXYWtgcvKS6U21bK4L9DXTSl1wfNZsIil4uX/pdUYbhhgl6LD6PmLLFYrbkmRIq62C8R5cWeZZJaTXrR9ab/5cGv8kVIe7I67lISG8KbcQynqW2QrwEGf+4Aku7oRC0uU6jgz5krcPE6cVf4e6J/ohPI4ciQkhlxu+bJcPgIqs4euIaK109rwMWqMR7JcQKcBxCQrt0eUkiEpENzodJR8qSI2QO9Lop3J0zCCm3OGbXSkdLQu+4QZWb+jR2yDMQjvY";
+    private static final String VUFORIA_KEY = "AY8TKWz/////AAABmVxCzalxrU1fupYh/xwHhc46D6Xbwe+vCr4oD8Z4xAyjlTIiFRZ3aYKRHB+QZ89PLKp9XsgoskoC6x9t0udnNkbAV8pKqQqcd1NDQyBWhza6GIccC7BLF63DdSGidSqut5hZ7BGzXRo9m9CAgBqq1rPgNdyEncD4MnPJryST0Tzv0UDuJpiVu04Fub2ErVH9gVadMw5VDzgLKQCRSCHTD/jnXN2Tyw9agjtfMf3rbmg+1jVniX5RsQCbpAdH+Vj/yWAuH1bbYw46FGmDI7RoAuUVsKuVgD0WuDG0fduLZNyHG+d/L7DG7zANu62mHaBDCGkiblTr+QnkBu1JC+ZZWd9XVaXzIwBkEbG6UYfN79fy";
 
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;

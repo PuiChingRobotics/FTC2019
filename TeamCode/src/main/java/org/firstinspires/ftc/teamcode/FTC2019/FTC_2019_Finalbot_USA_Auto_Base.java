@@ -222,7 +222,7 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends Nav {
                 tfod.activate();
             }
 
-            while (opModeIsActive() && (goldmineral != null || Timer.seconds() > 10)) {
+            while (opModeIsActive() && (goldmineral != "Left" && goldmineral != "Center" || Timer.seconds() > 10)) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.

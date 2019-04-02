@@ -72,7 +72,7 @@ public class FTC_2019_USA_Init {
         MC = _hw.crservo.get("MC");
 
 
-   //     Webcam = _hw.get(WebcamName.class, "Webcam");
+        Webcam = _hw.get(WebcamName.class, "Webcam");
 
         imu = _hw.get(BNO055IMU.class, "imu");
 
