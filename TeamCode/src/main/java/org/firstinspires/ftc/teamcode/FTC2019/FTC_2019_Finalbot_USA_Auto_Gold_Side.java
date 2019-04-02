@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.FTC2019;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import java.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -11,13 +10,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
-import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import java.util.List;
 
 @Autonomous(name="FTC_2019_Finalbot_USA_Auto_Gold_Side", group ="FTC 2019")
@@ -27,7 +25,6 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
     FTC_2019_USA_Init robot = new FTC_2019_USA_Init();
 
     String turn;
-
     public void initial(){
 
         robot.init(hardwareMap);
@@ -36,11 +33,18 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         robot.Rback.setPower(0);
         robot.Lback.setPower(0);
 
-
-        robot.runModeSet("reset");
         robot.runModeSet("encoder");
-        //robot.runModeSet("position");
-        Nav_Init();
+        robot.runModeSet("reset");
+        robot.runModeSet("position");
+
+        robot.Latch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Latch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Latch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void Latching(double Power, int Posistion){
+        robot.Latch.setTargetPosition(Posistion);
+        robot.Latch.setPower(Power);
     }
 
     public void SetDistanceToGo(double DistanceInCm, double LocalPowerAll, int LfrontEncoder, int RfrontEncoder, int LbackEncoder, int RbackEncoder){
@@ -101,8 +105,12 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
     {
         SetDistanceToGo(Distance, Power,1,-1,1,-1);
     }
+    public double in(double cm)
+    {
+        return cm/2.54 ;
+    }
 
-    /*public void turn (double Angle, double Power) {
+    public void turn (double Angle, double Power) {
         double TargetAngle = 0;
 
         Orientation orientation = robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
@@ -118,34 +126,28 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         }
 
         if(turn == "right"){
-            while (robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle < TargetAngle && opModeIsActive()){
-                robot.Lfront.setPower(Power*-1);
-                robot.Rfront.setPower(Power);
-                robot.Lback.setPower(Power*-1);
-                robot.Rback.setPower(Power);
-                telemetry.addData("Angle", robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle);
-                telemetry.addData("Target", TargetAngle);
-                telemetry.update();
-            }
-        }
-        else if (turn == "left"){           //turn left
-            while (robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle > TargetAngle){
+            while (orientation.thirdAngle < TargetAngle && opModeIsActive()){
                 robot.Lfront.setPower(Power);
                 robot.Rfront.setPower(Power*-1);
                 robot.Lback.setPower(Power);
                 robot.Rback.setPower(Power*-1);
-                telemetry.addData("Angle", orientation.thirdAngle);
-                telemetry.addData("Target", TargetAngle);
-                telemetry.update();
+            }
+        }
+        else{           //turn left
+            while (orientation.thirdAngle > TargetAngle){
+                robot.Lfront.setPower(Power*-1);
+                robot.Rfront.setPower(Power);
+                robot.Lback.setPower(Power*-1);
+                robot.Rback.setPower(Power);
             }
         }
 
-            robot.Lfront.setPower(0);
-            robot.Rfront.setPower(0);
-            robot.Lback.setPower(0);
-            robot.Rback.setPower(0);
+        robot.Lfront.setPower(0);
+        robot.Rfront.setPower(0);
+        robot.Lback.setPower(0);
+        robot.Rback.setPower(0);
 
-    }*/
+    }
 
 
     public void left(double Distance, double Power)
@@ -172,7 +174,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
     public int s1 = 0;
     public int s2 = 0;
 
-    /*private void initVuforia() {
+   /* private void initVuforia() {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
@@ -197,20 +199,27 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
 
         initial();
 
-        /*initVuforia();
+        //initVuforia();
 
         Nav_Init();
 
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+
+    /*    if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         } else {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }
+        }*/
 
+        telemetry.addData(">",robot.Latch.getCurrentPosition());
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
-        ElapsedTime Timer = new ElapsedTime();
+        Latching(1,robot.Latch_Limit);
+        while (robot.Latch.isBusy()){
+            telemetry.addData(">",robot.Latch.getCurrentPosition());
+            telemetry.update();
+        }
+     /*   ElapsedTime Timer = new ElapsedTime();
         Timer.reset();
         if (opModeIsActive()) {
             if (tfod != null) {
@@ -268,36 +277,48 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         if (tfod != null) {
             tfod.shutdown();
         }*/
-
-        waitForStart();
-        telemetry.addData("Gold",goldmineral);
-        telemetry.update();
         //Codes put bellow here
-        switch (goldmineral){
+        goldmineral="UNKNOWN";
+        /*switch (goldmineral){
             case "Left":
-                //go_forward(10,0,1,false);
-
-
+                telemetry.addLine("LEFT");
+                go_forward(  20/2.54,0,1,false);
+                sleep(3000);
+                Latching(1,  0 );
+                sleep(5000);
+                go_sideways(135,0,1, 50/2.54);
+                sleep(6000);
+                go_forward(  30/2.54,0,1,true);
+                sleep(3000);
                 break;
             case "Center":
-
-
-
+                telemetry.addLine("Center");
+                sleep(5000);
+                go_forward(  60/2.54,0,1,true);
+                sleep(3000);
+                Latching(1,0);
+                sleep(10000);
                 break;
             case "Right":
-
-
-
+                telemetry.addLine("RIGHT");
+                go_forward(  10/2.54,0,1,false);
+                sleep(3000);
+                Latching(1,0);
+                sleep(5000);
+                go_sideways(225,0,1, 60/2.54);
+                sleep(6000);
+                go_forward(  20/2.54,0,1,true);
+                sleep(3000);
                 break;
             case "UNKNOWN":
-                go_forward(30,0,-1,false);
-                sleep(500);
-                //turn(90,0.2);
-                //turn_to_heading(90);
-                //go_sideways(45, 90, .3, 100);
-
+                go_sideways(225,0,1, 60/2.54);
+                sleep(3000);
+                go_forward(  50/2.54,0,1,true);
+                sleep(3000);
+                turn_to_heading(90);
+                sleep(3000);
                 break;
-        }
+        }*/
 
 
 
@@ -308,7 +329,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
 
 
 
-        sleep(50000);
+
 
     }
 

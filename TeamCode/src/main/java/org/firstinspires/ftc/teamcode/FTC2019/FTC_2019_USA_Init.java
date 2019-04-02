@@ -41,12 +41,14 @@ public class FTC_2019_USA_Init {
     public double Rfrontforward = 0;
     public double Rbackforward = 0;
 
+
+    public double inc = 2.54;
     //cam
     public WebcamName Webcam;
     //imu
     BNO055IMU imu;
 
-    public double Latch_Limit = -10500;
+    public int Latch_Limit = -10500;
 
     public HardwareMap _hw;
 
@@ -70,7 +72,7 @@ public class FTC_2019_USA_Init {
         MC = _hw.crservo.get("MC");
 
 
-        Webcam = _hw.get(WebcamName.class, "Webcam");
+   //     Webcam = _hw.get(WebcamName.class, "Webcam");
 
         imu = _hw.get(BNO055IMU.class, "imu");
 

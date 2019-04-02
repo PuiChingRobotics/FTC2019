@@ -169,7 +169,6 @@ abstract public class Nav extends LinearOpMode {
             }
 
             power_adjustment = go_straight_adjustment(heading);
-
             robot.Rfront.setPower(current_speed + power_adjustment);
             robot.Rback.setPower(current_speed + power_adjustment);
             robot.Lfront.setPower(current_speed - power_adjustment);

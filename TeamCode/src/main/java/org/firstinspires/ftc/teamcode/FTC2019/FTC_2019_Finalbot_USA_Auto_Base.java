@@ -49,7 +49,6 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends Nav {
     public void Latching(double Power, int Posistion){
         robot.Latching.setTargetPosition(Posistion);
         robot.Latching2.setTargetPosition(Posistion);
-
         robot.Latching.setPower(Power);
         robot.Latching2.setPower(Power);
     }
@@ -278,7 +277,6 @@ public class FTC_2019_Finalbot_USA_Auto_Base extends Nav {
         switch (goldmineral){
             case "Left":
                 go_forward(10,0,1,false);
-
 
                 break;
             case "Center":
