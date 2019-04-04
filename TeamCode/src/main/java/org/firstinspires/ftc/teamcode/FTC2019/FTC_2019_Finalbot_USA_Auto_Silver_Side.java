@@ -1,8 +1,8 @@
+//test
 package org.firstinspires.ftc.teamcode.FTC2019;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import java.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -11,13 +11,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
-import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import java.util.List;
 
 @Autonomous(name="FTC_2019_Finalbot_USA_Auto_Silver_Side", group ="FTC 2019")
@@ -27,7 +26,6 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
     FTC_2019_USA_Init robot = new FTC_2019_USA_Init();
 
     String turn;
-
     public void initial(){
 
         robot.init(hardwareMap);
@@ -36,12 +34,14 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         robot.Rback.setPower(0);
         robot.Lback.setPower(0);
 
-
         robot.runModeSet("reset");
         robot.runModeSet("encoder");
-        //robot.runModeSet("position");
-        Nav_Init();
+
+        robot.Latch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Latch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Latch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
+
     public void Latching(double Power, int Posistion){
         robot.Latch.setTargetPosition(Posistion);
         robot.Latch.setPower(Power);
@@ -105,8 +105,12 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
     {
         SetDistanceToGo(Distance, Power,1,-1,1,-1);
     }
+    public double in(double cm)
+    {
+        return cm/2.54 ;
+    }
 
-    /*public void turn (double Angle, double Power) {
+    public void turn (double Angle, double Power) {
         double TargetAngle = 0;
 
         Orientation orientation = robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
@@ -122,34 +126,28 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         }
 
         if(turn == "right"){
-            while (robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle < TargetAngle && opModeIsActive()){
-                robot.Lfront.setPower(Power*-1);
-                robot.Rfront.setPower(Power);
-                robot.Lback.setPower(Power*-1);
-                robot.Rback.setPower(Power);
-                telemetry.addData("Angle", robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle);
-                telemetry.addData("Target", TargetAngle);
-                telemetry.update();
-            }
-        }
-        else if (turn == "left"){           //turn left
-            while (robot.imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle > TargetAngle){
+            while (orientation.thirdAngle < TargetAngle && opModeIsActive()){
                 robot.Lfront.setPower(Power);
                 robot.Rfront.setPower(Power*-1);
                 robot.Lback.setPower(Power);
                 robot.Rback.setPower(Power*-1);
-                telemetry.addData("Angle", orientation.thirdAngle);
-                telemetry.addData("Target", TargetAngle);
-                telemetry.update();
+            }
+        }
+        else{           //turn left
+            while (orientation.thirdAngle > TargetAngle){
+                robot.Lfront.setPower(Power*-1);
+                robot.Rfront.setPower(Power);
+                robot.Lback.setPower(Power*-1);
+                robot.Rback.setPower(Power);
             }
         }
 
-            robot.Lfront.setPower(0);
-            robot.Rfront.setPower(0);
-            robot.Lback.setPower(0);
-            robot.Rback.setPower(0);
+        robot.Lfront.setPower(0);
+        robot.Rfront.setPower(0);
+        robot.Lback.setPower(0);
+        robot.Rback.setPower(0);
 
-    }*/
+    }
 
 
     public void left(double Distance, double Power)
@@ -165,7 +163,7 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
 
-    private static final String VUFORIA_KEY = "AXkVpHb/////AAABmTAE3zZYuEAqmWdab0pJQ9EH65J/3Dw/hnjqLlsJ6Lj4NKskFaXCfQ0yl5QyhVTIJinYPJ/553/NPU1F9fkSkX8xtgKVMEWdDwF5DC6tqN4D74iEIEyJzvye3/W1Mmryu9dmxyAdWJq+zVxqTRE+ELaw2cZDPMHnXVQ2NFeHvM6Eq9hNgkxzB1dy0WiC5BdftcPrsPdVuKsGRaWhKwXD8N87uO4+xeZIkx6lw7R3wWDW9IcLL6fQophrM1bA4kvOUA/GHk+paW6bSr07BfWCckBbFduvgTLtL5VwRXMr8MqHF9Vk80oWQYWYin5KevhfgiN9UUdoVFfl01O4RfqSbDOJg/FH+adPJl5io3PahBsj\\n";
+    private static final String VUFORIA_KEY = "AY8TKWz/////AAABmVxCzalxrU1fupYh/xwHhc46D6Xbwe+vCr4oD8Z4xAyjlTIiFRZ3aYKRHB+QZ89PLKp9XsgoskoC6x9t0udnNkbAV8pKqQqcd1NDQyBWhza6GIccC7BLF63DdSGidSqut5hZ7BGzXRo9m9CAgBqq1rPgNdyEncD4MnPJryST0Tzv0UDuJpiVu04Fub2ErVH9gVadMw5VDzgLKQCRSCHTD/jnXN2Tyw9agjtfMf3rbmg+1jVniX5RsQCbpAdH+Vj/yWAuH1bbYw46FGmDI7RoAuUVsKuVgD0WuDG0fduLZNyHG+d/L7DG7zANu62mHaBDCGkiblTr+QnkBu1JC+ZZWd9XVaXzIwBkEbG6UYfN79fy";
 
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
@@ -181,9 +179,9 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
 
-        //parameters.cameraName = robot.Webcam;  //use this when use webcam
+        parameters.cameraName = robot.Webcam;  //use this when use webcam
 
-        parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
+        //parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
@@ -205,8 +203,6 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         Nav_Init();
 
-        Latching(1, robot.Latch_Limit );
-        sleep(6000);
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
@@ -214,9 +210,13 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
+        //telemetry.addData(">",robot.Latch.getCurrentPosition());
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
+        /*Latching(1,robot.Latch_Limit);
+        sleep(9000);
+        telemetry.addData(">",robot.Latch.getCurrentPosition());*/
         ElapsedTime Timer = new ElapsedTime();
         Timer.reset();
         if (opModeIsActive()) {
@@ -275,49 +275,118 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         if (tfod != null) {
             tfod.shutdown();
         }
-
-        waitForStart();
-        telemetry.addData("Gold",goldmineral);
-        telemetry.update();
         //Codes put bellow here
+
+        telemetry.addData("Correct2",robot.Latch.getCurrentPosition());
+        telemetry.update();
+        goldmineral="UNKNOWN";
         switch (goldmineral){
             case "Left":
-                go_forward(10/2.54,0,1,false);
-                sleep(4000);
-                Latching(1,0);
-                sleep(2000);
-
-
+                telemetry.addLine("LEFT");
+                //go to gold
+                go_sideways(135,0,0.7,20);
+                sleep(500);
+                //rotate + push gold
+                turn_to_heading(135);
+                sleep(500);
+                //go forward a little bit
+                go_forward(10,135,1,false);
+                sleep(500);
+                //go to claiming
+                go_sideways(90,135,0.7,40);
+                sleep(500);
+                //drop team marker
+                robot.Hammer.setPosition(0.5);
+                sleep(1500);
+                //hammer down
+                robot.Hammer.setPosition(0.03);
+                sleep(500);
+                //push wall
+                go_forward(20,135,0.5,false);
+                sleep(500);
+                //go to crater
+                go_forward(80,315,-1,true);
+                sleep(500);
                 break;
             case "Center":
-                go_forward(10/2.54,0,1,false);
-                sleep(4000);
-                Latching(1,0);
-                sleep(2000);
-
-
-                break;
-            case "Right":
-                go_forward(10/2.54,0,1,false);
-                sleep(4000);
-                Latching(1,0);
-                sleep(2000);
-
-
-                break;
-            case "UNKNOWN":
+                telemetry.addLine("Center");
+                //push gold
                 go_forward(30,0,-1,false);
                 sleep(500);
-                //turn(90,0.2);
-                //turn_to_heading(90);
-                //go_sideways(45, 90, .3, 100);
+                //rotate
+                turn_to_heading(135);
+                sleep(500);
+                //go towards a little bit
+                go_forward(30,135,1,false);
+                sleep(500);
+                //go claiming
+                go_sideways(90,135,0.7,40);
+                sleep(500);
+                //drop team marker
+                robot.Hammer.setPosition(0.5);
+                sleep(1500);
+                //hammer down
+                robot.Hammer.setPosition(0.03);
+                sleep(500);
+                //push wall
+                go_forward(20,135,0.5,false);
+                sleep(500);
+                //go to crater
+                go_forward(80,315,-1,true);
+                sleep(500);
+                break;
+            case "Right":
+                telemetry.addLine("RIGHT");
+                //go to gold
+                go_sideways(315,0,0.7,10);
+                sleep(500);
+                //push gold
+                turn_to_heading(135);
+                sleep(500);
+                //go to parking
+                go_sideways(90,135,0.7,20);
+                sleep(500);
+                go_forward(20,135,-1,false);
+                sleep(500);
+                //rotate to park
+                turn_to_heading(90);
+                sleep(500);
+                //park
+                go_forward(40,90,-1,true);
+                sleep(500);
+                break;
+
+            case "UNKNOWN":
+                //go to gold
+                go_sideways(315,0,0.7,10);
+                sleep(500);
+                //push gold
+                turn_to_heading(135);
+                sleep(500);
+                //go to parking
+                go_sideways(90,135,0.7,20);
+                sleep(500);
+                go_forward(20,135,-1,false);
+                sleep(500);
+                //rotate to park
+                turn_to_heading(90);
+                sleep(500);
+                //park
+                go_forward(40,90,-1,true);
+                sleep(500);
                 break;
         }
 
 
 
 
-        sleep(50000);
+
+
+
+
+
+
+
 
     }
 
