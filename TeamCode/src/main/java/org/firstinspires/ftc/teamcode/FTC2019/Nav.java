@@ -66,6 +66,7 @@ abstract public class Nav extends LinearOpMode {
         }
 
         timeouttimer.reset();
+        telemetry.addData("Timer", timeouttimer.seconds());
         prevheading = current_heading;
         while (degrees_to_turn > .5 && opModeIsActive() && timeouttimer.seconds() < 30) {
 
@@ -95,7 +96,7 @@ abstract public class Nav extends LinearOpMode {
                 timeouttimer.reset();
                 prevheading = current_heading;
             }
-
+            telemetry.update();
         }
 
         robot.Rfront.setPower(0);
@@ -166,7 +167,7 @@ abstract public class Nav extends LinearOpMode {
         timeouttimer.reset();
 
         gs_first_run = true;
-
+        telemetry.addData("Timer",timeouttimer.seconds());
         while (opModeIsActive() && !destination_reached && timeouttimer.seconds() < goforwardstopdetect && !craterhit) {
 
             current_speed = current_speed + speed_increase;  // this is to slowly ramp up the speed so we don't slip
@@ -222,7 +223,7 @@ abstract public class Nav extends LinearOpMode {
                     speed = -speed;
                 }
             }
-
+            telemetry.update();
         }
         robot.Rfront.setPower(0);
         robot.Rback.setPower(0);
@@ -313,6 +314,10 @@ abstract public class Nav extends LinearOpMode {
             robot.Rfront.setPower(rightfrontpower);
             robot.Lback.setPower(leftrearpower);
             robot.Rback.setPower(rightrearpower);
+
+            telemetry.addData("highest_ticks_traveled", highest_ticks_traveled);
+            telemetry.addData("ticks_to_travel", ticks_to_travel);
+            telemetry.update();
         }
 
         robot.Lfront.setPower(0);
