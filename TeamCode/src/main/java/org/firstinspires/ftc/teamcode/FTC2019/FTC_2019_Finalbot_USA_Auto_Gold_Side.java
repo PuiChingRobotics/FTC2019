@@ -309,7 +309,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
                 sleep(500);
                 //go to crater
 
-                go_forward(40,225,0.5,false);
+                go_forward(40,225,0.5,true);
                 sleep(500);
                 break;
             case "Center":
@@ -339,7 +339,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
                 left(13,0.7);
                 sleep(500);
                 telemetry.addLine("done");
-                go_forward(40,225,0.5,false);
+                go_forward(40,225,0.5,true);
                 sleep(500);
 
                 break;
@@ -374,7 +374,7 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
                 left(13,0.7);
                 sleep(500);
                 telemetry.addLine("done");
-                go_forward(40,225,0.5,false);
+                go_forward(40,225,0.5,true);
                 sleep(500);
 
 

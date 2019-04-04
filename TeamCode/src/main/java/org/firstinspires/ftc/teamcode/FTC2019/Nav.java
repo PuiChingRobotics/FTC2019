@@ -45,6 +45,9 @@ abstract public class Nav extends LinearOpMode {
 
         robot.init(hardwareMap);
 
+        robot.runModeSet("reset");
+        robot.runModeSet("encoder");
+
         boolean go_right;
         double current_heading;
         double degrees_to_turn;
@@ -108,6 +111,9 @@ abstract public class Nav extends LinearOpMode {
     public void go_forward(double inches_to_travel, double heading, double speed, boolean gotocrater) {
 
         robot.init(hardwareMap);
+
+        robot.runModeSet("reset");
+        robot.runModeSet("encoder");
 
         ElapsedTime log_timer = new ElapsedTime();
 
@@ -231,6 +237,9 @@ abstract public class Nav extends LinearOpMode {
 
         robot.init(hardwareMap);
 
+        robot.runModeSet("reset");
+        robot.runModeSet("encoder");
+
         double stickpower = power;
         double angleradians;
         double leftfrontpower;
@@ -240,7 +249,7 @@ abstract public class Nav extends LinearOpMode {
         double turningpower = 0;
         boolean mineralclose = false;
         boolean destinationreached = false;
-        final double ticksperinch = 47;
+        final double ticksperinch = ticks_per_inch;
         int ticks_to_travel;
         int start_position_l_Front;
         int start_position_l_Rear;

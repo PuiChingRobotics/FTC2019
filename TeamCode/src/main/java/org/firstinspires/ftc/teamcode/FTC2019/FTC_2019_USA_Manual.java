@@ -26,7 +26,6 @@ public class FTC_2019_USA_Manual extends OpMode {
         robot.Latch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.MCRotate.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.MCRotate.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.MCRotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
@@ -171,10 +170,8 @@ public class FTC_2019_USA_Manual extends OpMode {
 
         //MC Motor Rotation
         if (gamepad2.left_trigger > 0.1) {
-                    robot.MCRotate.setTargetPosition(-500);
                     robot.MCRotate.setPower(gamepad2.left_trigger);
         } else if (gamepad2.right_trigger > 0.1) {
-                    robot.MCRotate.setTargetPosition(-150);
                     robot.MCRotate.setPower(gamepad2.right_trigger);
         }
         else{

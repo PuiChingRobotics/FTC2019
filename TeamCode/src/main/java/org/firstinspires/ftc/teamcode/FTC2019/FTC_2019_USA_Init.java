@@ -83,10 +83,10 @@ public class FTC_2019_USA_Init {
         Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
         Lback.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        Rfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        Rfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         LS1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
