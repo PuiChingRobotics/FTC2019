@@ -172,7 +172,7 @@ public class FTC_2019_USA_Manual extends OpMode {
         if (gamepad2.left_trigger > 0.1) {
                     robot.MCRotate.setPower(gamepad2.left_trigger);
         } else if (gamepad2.right_trigger > 0.1) {
-                    robot.MCRotate.setPower(gamepad2.right_trigger);
+                    robot.MCRotate.setPower(-gamepad2.right_trigger);
         }
         else{
                     robot.MCRotate.setPower(0);
