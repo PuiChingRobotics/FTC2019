@@ -29,7 +29,7 @@ abstract public class Nav extends LinearOpMode {
     private double wheel_diameter = 4;  // size of wheels
     public double ticks_per_inch = wheel_encoder_ticks / (wheel_diameter * Math.PI);
 
-    public double goforwardstopdetect = 10;
+    public double goforwardstopdetect = 30;
 
     public void Nav_Init() {
         BNO055IMU.Parameters IMUParameters = new BNO055IMU.Parameters();
@@ -67,7 +67,7 @@ abstract public class Nav extends LinearOpMode {
 
         timeouttimer.reset();
         prevheading = current_heading;
-        while (degrees_to_turn > .5 && opModeIsActive() && timeouttimer.seconds() < 2) {
+        while (degrees_to_turn > .5 && opModeIsActive() && timeouttimer.seconds() < 30) {
 
             wheel_power = (2 * Math.pow((degrees_to_turn + 13) / 30, 2) + 15) / 100;
 

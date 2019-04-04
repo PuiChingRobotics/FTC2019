@@ -41,14 +41,14 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         robot.Latch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
-    public void Latching(double Power, int Posistion){
-        robot.Latch.setTargetPosition(Posistion);
+    public void Latching(double Power, int Position){
+        robot.Latch.setTargetPosition(Position);
         robot.Latch.setPower(Power);
     }
 
     public void SetDistanceToGo(double DistanceInCm, double LocalPowerAll, int LfrontEncoder, int RfrontEncoder, int LbackEncoder, int RbackEncoder){
         double DiameterOfWheel = 10;
-        final double EncoderValue = 1680;
+        final double EncoderValue = 1120;
         final double GearRatio = 1;
         final double Pi = Math.PI;
         double Circumference = DiameterOfWheel*Pi;
