@@ -46,6 +46,14 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         robot.Latch.setTargetPosition(Posistion);
         robot.Latch.setPower(Power);
     }
+    public void Latchup()
+    {
+        Latching(1,0);
+    }
+    public void Latchdown()
+    {
+        Latching(1,robot.Latch_Limit );
+    }
 
     public void SetDistanceToGo(double DistanceInCm, double LocalPowerAll, int LfrontEncoder, int RfrontEncoder, int LbackEncoder, int RbackEncoder){
         double DiameterOfWheel = 10;
@@ -148,8 +156,100 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         robot.Rback.setPower(0);
 
     }
+    public void SLEFT()
+    {
+        telemetry.addLine("LEFT");
+        //go to gold
+        go_sideways(135,0,0.6,50);
+        //Latchup();
+        //turn to claiming
+        turn_to_heading(45);
+        //push wall
+        go_sideways(90,45,0.5,15);
+        //wait for alliance
+        //sleep(4000);
+        //go claiming
+        go_forward(80,45,1,false);
+        //go right to give space for team marker
+        go_sideways(270,45,0.5,10);
+        //drop team marker
+        robot.Hammer.setPosition(0.5);
+        sleep(1500);
+        //hammer down
+        robot.Hammer.setPosition(0.03);
+        //go left to avoid possible silver mineral
+        go_sideways(90,45,0.5,10);
+        //go to crater
+        go_forward(160,45,-1,true);
+    }
+    public void SCENTRE()
+    {
+        telemetry.addLine("Center");
+        //go to gold
+        go_forward(25,0,-1,false);
+        //return
+        go_forward(15,0,1,false);
+        //go away
+        go_sideways(103,0,1,40);
+        //Latchup();
+        //turn to claiming
+        turn_to_heading(45);
+        //push wall
+        go_sideways(90,45,0.5,20);
+        sleep(500);
 
+        //wait for alliance
+        //sleep(4000);
 
+        //go claiming
+        go_forward(65,45,1,false);
+        //leave wall
+        go_sideways(270,45,0.5,5);
+
+        //drop team marker
+        robot.Hammer.setPosition(0.5);
+        sleep(1500);
+        //hammer down
+        robot.Hammer.setPosition(0.03);
+        //push wall
+        go_sideways(90,45,0.5,2);
+        //go to crater
+        go_forward(160,45,-1,true);
+    }
+
+    public void SRIGHT()
+    {
+        telemetry.addLine("RIGHT");
+        //go to gold
+        go_sideways(225,0,0.7,45);
+        //return
+        go_sideways(45,0,0.7,23);
+        //go away
+        go_sideways(90,0,1,60);
+        //Latchup();
+        //turn to claiming
+        turn_to_heading(45);
+        //push wall
+        go_sideways(90,45,0.5,10);
+
+        //wait for alliance
+        //sleep(4000);
+
+        //go claiming
+        go_forward(50,45,1,false);
+        //leave wall
+        go_sideways(270,45,0.5,5);
+
+        //drop team marker
+        robot.Hammer.setPosition(0.5);
+        sleep(1500);
+        //hammer down
+        robot.Hammer.setPosition(0.03);
+        //push wall
+        go_sideways(90,45,0.5,2);
+        //go to crater
+        go_forward(160,45,-1,true);
+    }
     public void left(double Distance, double Power)
     {
         SetDistanceToGo(Distance, Power,-1,1,1,-1);
@@ -199,24 +299,24 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         initial();
 
-        initVuforia();
+        //  initVuforia();
 
         Nav_Init();
 
 
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+        /*if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         } else {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }
+        }*/
 
         //telemetry.addData(">",robot.Latch.getCurrentPosition());
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
-        /*Latching(1,robot.Latch_Limit);
+        /*Latchdown();
         sleep(9000);
-        telemetry.addData(">",robot.Latch.getCurrentPosition());*/
+        telemetry.addData(">",robot.Latch.getCurrentPosition());
         ElapsedTime Timer = new ElapsedTime();
         Timer.reset();
         if (opModeIsActive()) {
@@ -274,7 +374,7 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         if (tfod != null) {
             tfod.shutdown();
-        }
+        }*/
         //Codes put bellow here
 
         telemetry.addData("Correct2",robot.Latch.getCurrentPosition());
@@ -282,98 +382,18 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         goldmineral="UNKNOWN";
         switch (goldmineral){
             case "Left":
-                telemetry.addLine("LEFT");
-                //go to gold
-                go_sideways(135,0,0.7,20);
-                sleep(500);
-                //rotate + push gold
-                turn_to_heading(135);
-                sleep(500);
-                //go forward a little bit
-                go_forward(10,135,1,false);
-                sleep(500);
-                //go to claiming
-                go_sideways(90,135,0.7,40);
-                sleep(500);
-                //drop team marker
-                robot.Hammer.setPosition(0.5);
-                sleep(1500);
-                //hammer down
-                robot.Hammer.setPosition(0.03);
-                sleep(500);
-                //push wall
-                go_forward(20,135,0.5,false);
-                sleep(500);
-                //go to crater
-                go_forward(80,315,-1,true);
-                sleep(500);
+                SLEFT();
                 break;
             case "Center":
-                telemetry.addLine("Center");
-                //push gold
-                go_forward(30,0,-1,false);
-                sleep(500);
-                //rotate
-                turn_to_heading(135);
-                sleep(500);
-                //go towards a little bit
-                go_forward(30,135,1,false);
-                sleep(500);
-                //go claiming
-                go_sideways(90,135,0.7,40);
-                sleep(500);
-                //drop team marker
-                robot.Hammer.setPosition(0.5);
-                sleep(1500);
-                //hammer down
-                robot.Hammer.setPosition(0.03);
-                sleep(500);
-                //push wall
-                go_forward(20,135,0.5,false);
-                sleep(500);
-                //go to crater
-                go_forward(80,315,-1,true);
-                sleep(500);
+                SCENTRE();
                 break;
             case "Right":
-                telemetry.addLine("RIGHT");
-                //go to gold
-                go_sideways(315,0,0.7,10);
-                sleep(500);
-                //push gold
-                turn_to_heading(135);
-                sleep(500);
-                //go to parking
-                go_sideways(90,135,0.7,20);
-                sleep(500);
-                go_forward(20,135,-1,false);
-                sleep(500);
-                //rotate to park
-                turn_to_heading(90);
-                sleep(500);
-                //park
-                go_forward(40,90,-1,true);
-                sleep(500);
+                SRIGHT();
                 break;
 
             case "UNKNOWN":
                 //go to gold
-                go_sideways(315,0,0.7,10);
-                sleep(500);
-                //push gold
-                turn_to_heading(135);
-                sleep(500);
-                //go to parking
-                go_sideways(90,135,0.7,20);
-                sleep(500);
-                go_forward(20,135,-1,false);
-                sleep(500);
-                //rotate to park
-                turn_to_heading(90);
-                sleep(500);
-                //park
-                go_forward(40,90,-1,true);
-                sleep(500);
+                SRIGHT();
                 break;
         }
 

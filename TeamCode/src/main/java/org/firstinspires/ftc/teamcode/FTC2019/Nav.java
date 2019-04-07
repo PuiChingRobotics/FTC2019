@@ -96,6 +96,8 @@ abstract public class Nav extends LinearOpMode {
                 timeouttimer.reset();
                 prevheading = current_heading;
             }
+            telemetry.addData("Check",go_right);
+            telemetry.addData("Check2",degrees_to_turn);
             telemetry.update();
         }
 

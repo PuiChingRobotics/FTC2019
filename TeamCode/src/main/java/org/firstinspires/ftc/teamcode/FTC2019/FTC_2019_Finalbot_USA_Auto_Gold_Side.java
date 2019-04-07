@@ -162,110 +162,82 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         telemetry.addLine("LEFT");
         //go to gold
         go_sideways(135,0,1,60);
-        sleep(500);
 
         Latching(1,0);
         //rotate
         turn_to_heading(135);
-        sleep(500);
         //go forward a little bit
-        //go_forward(10,135,-0.5,false);
-        sleep(500);
+        //go_forward(10,135,1,false);
         //go to claiming
-        right(60,1);
-        sleep(500);
+        go_sideways(90,135,0.5,30);
         //allign wall
-        forward(30,1);
-        sleep(500);
+        go_forward(7,135,0.7,false);
         //drop team marker
         robot.Hammer.setPosition(0.5);
-        sleep(2000);
+        sleep(1500);
         //hammer down
         robot.Hammer.setPosition(0.03);
-        sleep(500);
 
         //leave wall
-        backward(10,1);
-        sleep(500);
+        go_forward(4,135,-0.5,false);
         //turn to crater
-        turn_to_heading(225);
-        sleep(500);
+        turn_to_heading(45);
         //allign wall
-        left(17,1);
-        sleep(500);
+        //left(17,1);
+        //sleep(500);
         telemetry.addLine("done");
         go_forward(70,45,1,true);
-        sleep(500);
     }
-    public void CENTRE()
+    public void CENTER()
     {
         telemetry.addLine("Center");
         //push gold
         go_forward(40,0,-1,false);
-        sleep(500);
 
         Latching(1,0);
         //turn to wall
         turn_to_heading(135);
-        sleep(500);
         //go to wall
-        go_forward(20,135,1,false);
-        sleep(500);
+        go_forward(17,135,1,false);
         //drop team marker
         robot.Hammer.setPosition(0.5);
-        sleep(2000);
+        sleep(1500);
         //hammer down
         robot.Hammer.setPosition(0.03);
-        sleep(500);
         //push wall
-        go_forward(5,135,-1,false);
-        sleep(500);
+        go_forward(3,135,-1,false);
         //turn to crater
         turn_to_heading(225);
-        sleep(500);
-        //allign wall
-        left(13,1);
-        sleep(500);
         telemetry.addLine("done");
-        go_forward(80,45,1,true);
-        sleep(500);
+        go_forward(80,225,-1,true);
     }
     public void RIGHT()
     {
         telemetry.addLine("RIGHT");
         //go to gold
         go_sideways(225,0,1, 40);
-        sleep(500);
         //push gold
         Latching(1,0);
 
-        go_forward(10,0,-1,false);
-        sleep(500);
+        go_forward(13,0,-1,false);
         //turn for claiming
         turn_to_heading(135);
-        sleep(500);
 
         //go to claiming
-        go_forward(40,135,1,false);
-        sleep(500);
+        go_forward(33,135,1,false);
         //drop team marker
         robot.Hammer.setPosition(0.5);
-        sleep(2000);
+        sleep(1500);
         //hammer down
         robot.Hammer.setPosition(0.03);
-        sleep(500);
         //push wall
-        go_forward(5,135,-1,false);
-        sleep(500);
+        //go_forward(5,135,-1,false);
         //turn to crater
-        turn_to_heading(225);
-        sleep(500);
+        turn_to_heading(45);
         //allign wall
-        left(13,1);
-        sleep(500);
+        //go_sideways(270,45,0.7,3);
         telemetry.addLine("done");
-        go_forward(70,45,0.5,true);
-        sleep(500);
+        go_forward(70,45,1,true);
     }
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -386,117 +358,24 @@ public class FTC_2019_Finalbot_USA_Auto_Gold_Side extends Nav {
         //Codes put bellow here
         telemetry.addData("Correct2",robot.Latch.getCurrentPosition());
         telemetry.update();
-        goldmineral="Left";
+        goldmineral="UNKNOWN";
 
         switch (goldmineral){
             case "Left":
                 LEFT();
-                /*telemetry.addLine("LEFT");
-                //go to gold
-                go_sideways(135,0,0.7,70);
-                sleep(500);
 
-                //rotate
-                turn_to_heading(135);
-                sleep(500);
-                //go forward a little bit
-                go_forward(10,135,-0.5,false);
-                sleep(500);
-                //go to claiming
-                right(60,0.5);
-                sleep(500);
-                //allign wall
-                forward(30,0.5);
-                sleep(500);
-                //drop team marker
-                robot.Hammer.setPosition(0.5);
-                sleep(2000);
-                //hammer down
-                robot.Hammer.setPosition(0.03);
-                sleep(500);
-
-                //leave wall
-                backward(10,0.5);
-                sleep(500);
-                //turn to crater
-                turn_to_heading(225);
-                sleep(500);
-                //allign wall
-                left(13,0.7);
-                sleep(500);
-                telemetry.addLine("done");
-                backward(60,0.5);
-                sleep(500); */
                 break;
             case "Center":
-                CENTRE();
-                /*telemetry.addLine("Center");
-                //push gold
-                go_forward(40,0,0.5,false);
-                sleep(500);
-                //turn to wall
-                turn_to_heading(135);
-                sleep(500);
-                //go to wall
-                go_forward(20,135,-0.5,false);
-                sleep(500);
-                //drop team marker
-                robot.Hammer.setPosition(0.5);
-                sleep(2000);
-                //hammer down
-                robot.Hammer.setPosition(0.03);
-                sleep(500);
-                //push wall
-                go_forward(5,135,0.5,false);
-                sleep(500);
-                //turn to crater
-                turn_to_heading(225);
-                sleep(500);
-                //allign wall
-                left(13,0.7);
-                sleep(500);
-                telemetry.addLine("done");
-                backward(40,0.5);
-                sleep(500);*/
+                CENTER();
+
 
                 break;
             case "Right":
                 RIGHT();
-                /*telemetry.addLine("RIGHT");
-                //go to gold
-                go_sideways(225,0,0.7, 70);
-                sleep(500);
-                //push gold
-                go_forward(10,0,1,false);
-                sleep(500);
-                //turn for claiming
-                turn_to_heading(135);
-                sleep(500);
 
-                //go to claiming
-                go_forward(35,135,-0.5,false);
-                sleep(500);
-                //drop team marker
-                robot.Hammer.setPosition(0.5);
-                sleep(2000);
-                //hammer down
-                robot.Hammer.setPosition(0.03);
-                sleep(500);
-                //push wall
-                go_forward(5,135,0.5,false);
-                sleep(500);
-                //turn to crater
-                turn_to_heading(225);
-                sleep(500);
-                //allign wall
-                left(13,0.7);
-                sleep(500);
-                telemetry.addLine("done");
-                backward(50,0.5);
-                sleep(500);*/
                 break;
             case "UNKNOWN":
-                CENTRE();
+                LEFT();
                 break;
 
 
