@@ -39,9 +39,13 @@ public class VisionJava extends LinearOpMode {
 
         parameters.cameraName = robot.Webcam;  //use this when use webcam
 
+        sleep(4000);
+
        // parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        sleep(4000);
 
    //     vuforia.enableConvertFrameToFormat()
     }
@@ -50,7 +54,7 @@ public class VisionJava extends LinearOpMode {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        vuforia.enableConvertFrameToFormat(1) ;
+        sleep(4000);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
@@ -90,11 +94,11 @@ public class VisionJava extends LinearOpMode {
                             int silverMineral2X = -1;
                             for (Recognition recognition : updatedRecognitions) {
                                 if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-                                    goldMineralX = (int) recognition.getTop();
+                                    goldMineralX = (int) recognition.getLeft();
                                 } else if (silverMineral1X == -1) {
-                                    silverMineral1X = (int) recognition.getTop();
+                                    silverMineral1X = (int) recognition.getLeft();
                                 } else {
-                                    silverMineral2X = (int) recognition.getTop();
+                                    silverMineral2X = (int) recognition.getLeft();
                                 }
                             }
 

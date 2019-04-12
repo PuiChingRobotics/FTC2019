@@ -133,7 +133,7 @@ public class FTC_2019_USA_Manual extends OpMode {
                 //Player 2
                 //Sorter Position
                 if (gamepad2.dpad_up) {
-                    robot.Hammer.setPosition(0.5);
+                    robot.Hammer.setPosition(0.6);
                 } else if (gamepad2.dpad_left) {
                     robot.Hammer.setPosition(0.2);
                 } else if (gamepad2.dpad_down) {
@@ -151,9 +151,7 @@ public class FTC_2019_USA_Manual extends OpMode {
                         Check = true;
                     }
                 }
-                if(gamepad2.b == false && Sweep == false){
-                    Sweep = true;
-                }
+
                 if(gamepad2.a && Sweep == true){
                     Sweep = false;
                     if (Check) {
@@ -164,10 +162,14 @@ public class FTC_2019_USA_Manual extends OpMode {
                         Check = true;
                     }
                 }
-                if (gamepad2.a == false && Sweep == false){
-                    Sweep = true;
-                }
 
+                 if(gamepad2.a==false && gamepad2.b == false && Sweep == false){
+                 //let the sweep work
+                  Sweep = true;
+                 }
+        telemetry.addData("servo ",Check);
+        telemetry.addData("servo sweep ",Sweep);
+        telemetry.update();
         //MC Motor Rotation
         if (gamepad2.left_trigger > 0.1) {
                     robot.MCRotate.setPower(gamepad2.left_trigger);

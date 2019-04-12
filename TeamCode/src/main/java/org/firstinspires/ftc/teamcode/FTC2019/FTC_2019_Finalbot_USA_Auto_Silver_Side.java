@@ -156,7 +156,7 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         robot.Rback.setPower(0);
 
     }
-    public void SLEFT()
+    public void LEFT()
     {
         telemetry.addLine("LEFT");
         //go to gold
@@ -173,16 +173,16 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         //go right to give space for team marker
         go_sideways(270,45,0.5,10);
         //drop team marker
-        robot.Hammer.setPosition(0.5);
-        sleep(1500);
+        robot.Hammer.setPosition(0.6);
+        sleep(2000);
         //hammer down
         robot.Hammer.setPosition(0.03);
         //go left to avoid possible silver mineral
         go_sideways(90,45,0.5,10);
         //go to crater
-        go_forward(160,45,-1,true);
+        go_forward(90,45,-1,false);
     }
-    public void SCENTRE()
+    public void CENTRE()
     {
         telemetry.addLine("Center");
         //go to gold
@@ -207,17 +207,17 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         go_sideways(270,45,0.5,5);
 
         //drop team marker
-        robot.Hammer.setPosition(0.5);
-        sleep(1500);
+        robot.Hammer.setPosition(0.6);
+        sleep(2000);
         //hammer down
         robot.Hammer.setPosition(0.03);
         //push wall
         go_sideways(90,45,0.5,2);
         //go to crater
-        go_forward(160,45,-1,true);
+        go_forward(80,45,-1,false);
     }
 
-    public void SRIGHT()
+    public void RIGHT()
     {
         telemetry.addLine("RIGHT");
         //go to gold
@@ -236,19 +236,19 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
         //sleep(4000);
 
         //go claiming
-        go_forward(50,45,1,false);
+        go_forward(55,45,1,false);
         //leave wall
         go_sideways(270,45,0.5,5);
 
         //drop team marker
-        robot.Hammer.setPosition(0.5);
-        sleep(1500);
+        robot.Hammer.setPosition(0.6);
+        sleep(2000);
         //hammer down
         robot.Hammer.setPosition(0.03);
         //push wall
         go_sideways(90,45,0.5,2);
         //go to crater
-        go_forward(160,45,-1,true);
+        go_forward(80,45,-1,false);
     }
     public void left(double Distance, double Power)
     {
@@ -281,16 +281,22 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         parameters.cameraName = robot.Webcam;  //use this when use webcam
 
-        //parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
+        sleep(4000);
+
+        // parameters.cameraDirection = CameraDirection.BACK; //use this when use phone
 
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
+        sleep(4000);
+
+        //     vuforia.enableConvertFrameToFormat()
     }
 
     private void initTfod() {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        sleep(4000);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
@@ -299,23 +305,28 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         initial();
 
-        //  initVuforia();
+        initVuforia();
 
         Nav_Init();
 
+   /*     while (robot.Latch.isBusy()){
+            Latching(1,robot.Latch_Limit);
+            telemetry.addData(">",robot.Latch.getCurrentPosition());
+            telemetry.update();
+        }*/
 
-        /*if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         } else {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }*/
+        }
 
         //telemetry.addData(">",robot.Latch.getCurrentPosition());
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
-        /*Latchdown();
-        sleep(9000);
+        Latchdown();
+        sleep(4000);
         telemetry.addData(">",robot.Latch.getCurrentPosition());
         ElapsedTime Timer = new ElapsedTime();
         Timer.reset();
@@ -324,7 +335,7 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
                 tfod.activate();
             }
 
-            while (((goldmineral!="Left" && goldmineral!="Right" && goldmineral!="Center") || Timer.seconds() < 3) && Timer.seconds() < 10) {
+            while (((goldmineral!="Left" && goldmineral!="Right" && goldmineral!="Center") || Timer.seconds() < 3) && Timer.seconds() < 10) {  // min max
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -337,11 +348,11 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
                             int silverMineral2X = -1;
                             for (Recognition recognition : updatedRecognitions) {
                                 if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-                                    goldMineralX = (int) recognition.getTop();
+                                    goldMineralX = (int) recognition.getLeft();
                                 } else if (silverMineral1X == -1) {
-                                    silverMineral1X = (int) recognition.getTop();
+                                    silverMineral1X = (int) recognition.getLeft();
                                 } else {
-                                    silverMineral2X = (int) recognition.getTop();
+                                    silverMineral2X = (int) recognition.getLeft();
                                 }
                             }
 
@@ -374,32 +385,38 @@ public class FTC_2019_Finalbot_USA_Auto_Silver_Side extends Nav {
 
         if (tfod != null) {
             tfod.shutdown();
-        }*/
+        }
         //Codes put bellow here
+
+
+        go_forward(5,0,-1,false);
+
+        Latching(1,0);
 
         telemetry.addData("Correct2",robot.Latch.getCurrentPosition());
         telemetry.update();
-        goldmineral="UNKNOWN";
+
         switch (goldmineral){
             case "Left":
-                SLEFT();
+                LEFT();
                 break;
             case "Center":
-                SCENTRE();
+                CENTRE();
                 break;
             case "Right":
-                SRIGHT();
+                RIGHT();
                 break;
-
             case "UNKNOWN":
                 //go to gold
-                SRIGHT();
+                RIGHT();
                 break;
         }
 
-
-
-
+        sleep(5000);
+        //expand LS for parking
+        robot.LS2.setPower(0.8);
+        sleep(1000);
+        robot.LS2.setPower(0);
 
 
 
