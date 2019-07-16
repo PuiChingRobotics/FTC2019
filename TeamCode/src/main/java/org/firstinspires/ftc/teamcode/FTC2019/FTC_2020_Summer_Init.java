@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class FTC_2020_Summer_Init {
+
     //Drive Motors
     public DcMotor Lfront;
     public DcMotor Rfront;
