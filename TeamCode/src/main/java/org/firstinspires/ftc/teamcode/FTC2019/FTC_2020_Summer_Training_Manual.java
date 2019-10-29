@@ -123,10 +123,10 @@ public class FTC_2020_Summer_Training_Manual extends OpMode {
 
         //servo
 
-        if (gamepad2.dpad_up) {
-            robot.S1.setPosition(0.525);
-        } else if (gamepad2.dpad_left) {
-            robot.S1.setPosition(0.2);
+        if (gamepad1.dpad_up) {
+            robot.S1.setPosition(0.1);
+        } else if (gamepad1.dpad_down) {
+            robot.S1.setPosition(0.45);
         }
 
     }
