@@ -49,7 +49,6 @@ public class FTC_2020_HK1_Init {
 
     //2m distance sensor
 
-
     public HardwareMap _hw;
 
     public void init(HardwareMap hw) {
@@ -65,7 +64,7 @@ public class FTC_2020_HK1_Init {
 
         Clip = _hw.servo.get("Clip");
 
-        TS1 = _hw.digitalChannel.get("TS1");
+        TS1 = _hw.get(DigitalChannel.class, "TS1");
 
         Webcam = _hw.get(WebcamName.class, "Webcam");
 
@@ -81,8 +80,6 @@ public class FTC_2020_HK1_Init {
 
         LS1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        TS1.setMode(DigitalChannel.Mode.INPUT);
     }
 
     public void runModeSet(String mode) {
