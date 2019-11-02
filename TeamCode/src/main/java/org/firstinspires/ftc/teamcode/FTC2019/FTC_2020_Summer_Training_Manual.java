@@ -121,5 +121,13 @@ public class FTC_2020_Summer_Training_Manual extends OpMode {
         robot.Rfront.setPower(robot.Rfronttmp);
         robot.Rback.setPower(robot.Rbacktmp);
 
+        //servo
+
+        if (gamepad1.dpad_up) {
+            robot.S1.setPosition(0.1);
+        } else if (gamepad1.dpad_down) {
+            robot.S1.setPosition(0.45);
+        }
+
     }
 }

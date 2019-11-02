@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+
 public class FTC_2020_Summer_Training_Init {
 
     //Drive Motors
@@ -14,6 +16,9 @@ public class FTC_2020_Summer_Training_Init {
     public DcMotor Rfront;
     public DcMotor Lback;
     public DcMotor Rback;
+
+    //servo
+    public Servo S1;
 
     public double Lfronttmp = 0;
     public double Lbacktmp = 0;
@@ -33,6 +38,8 @@ public class FTC_2020_Summer_Training_Init {
         Rfront = _hw.dcMotor.get("Rfront");
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
+
+        S1= _hw.servo.get("S1");
 
         Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
         Lback.setDirection(DcMotorSimple.Direction.REVERSE);

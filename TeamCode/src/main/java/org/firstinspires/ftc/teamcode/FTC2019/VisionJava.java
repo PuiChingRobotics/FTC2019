@@ -88,7 +88,7 @@ public class VisionJava extends LinearOpMode {
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
-                        if (updatedRecognitions.size() == 3) {
+                        if (updatedRecognitions.size() >= 2) {
                             int goldMineralX = -1;
                             int silverMineral1X = -1;
                             int silverMineral2X = -1;
@@ -106,19 +106,20 @@ public class VisionJava extends LinearOpMode {
                             s1 = silverMineral1X;
                             s2 = silverMineral2X;
 
-                            if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
-                                if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
-                                    goldmineral = "Left";
-                                    telemetry.addData("Gold Mineral Position", "Left");
-                                } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
-                                    goldmineral = "Right";
-                                    telemetry.addData("Gold Mineral Position", "Right");
-                                } else {
+                            if (goldMineralX != -1 && silverMineral1X != -1  ) {
+                                if (goldMineralX < silverMineral1X) {
                                     goldmineral = "Center";
                                     telemetry.addData("Gold Mineral Position", "Center");
+                                } else if (goldMineralX > silverMineral1X) {
+                                    goldmineral = "Right";
+                                    telemetry.addData("Gold Mineral Position", "Right");
                                 }
+                            }else if (silverMineral2X != -1 && silverMineral1X != -1  ) {
+                                    goldmineral = "Left";
+                                    telemetry.addData("Gold Mineral Position", "Left");
                             }
                         }
+
                         telemetry.addData("Timer",Timer);
                         telemetry.addData("g1: ", g1);
                         telemetry.addData("s1: ", s1);
@@ -132,6 +133,8 @@ public class VisionJava extends LinearOpMode {
         if (tfod != null) {
             tfod.shutdown();
         }
+
+        sleep(4000);
         //Codes put bellow here
 
 
