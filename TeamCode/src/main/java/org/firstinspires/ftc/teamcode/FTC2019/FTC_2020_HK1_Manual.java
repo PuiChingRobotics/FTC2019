@@ -93,7 +93,7 @@ public class FTC_2020_HK1_Manual extends OpMode {
         //Player 2
 
         //LS1
-        if ((TS1.getState() == true) && (gamepad2.left_bumper)) {
+        if ((true == true) && (gamepad2.left_bumper)) {
             robot.LS1.setPower(1);
         }
         else if (gamepad2.left_trigger > 0.1) {
