@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.FTC2019;
+package org.firstinspires.ftc.teamcode.FTC2020;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -19,7 +19,7 @@ public class FTC_2020_HK1_Manual extends OpMode {
         robot.Rfront.setPower(0);
         robot.Lback.setPower(0);
         robot.Rback.setPower(0);
-        robot.TS1.setMode(DigitalChannel.Mode.INPUT);
+        //robot.TS1.setMode(DigitalChannel.Mode.INPUT);
         robot.runModeSet("encoder");
     }
 
@@ -92,7 +92,7 @@ public class FTC_2020_HK1_Manual extends OpMode {
         robot.Rback.setPower(rightrearpower);
 
         //Player 2
-
+        /*
         //LS1
         if ((robot.TS1.getState() == true) && (gamepad2.left_bumper)) {
             robot.LS1.setPower(1);
@@ -110,6 +110,7 @@ public class FTC_2020_HK1_Manual extends OpMode {
         } else if (gamepad2.dpad_down) {
             robot.Clip.setPosition(0.45);
         }
+        */
     }
 
     @Override

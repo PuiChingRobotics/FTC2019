@@ -133,7 +133,7 @@ public class FTC_2019_USA_Manual extends OpMode {
                 //Player 2
                 //Sorter Position
                 if (gamepad2.dpad_up) {
-                    robot.Hammer.setPosition(0.6);
+                    robot.Hammer.setPosition(0.525);
                 } else if (gamepad2.dpad_left) {
                     robot.Hammer.setPosition(0.2);
                 } else if (gamepad2.dpad_down) {

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.FTC2019;
+package org.firstinspires.ftc.teamcode.FTC2020;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -7,6 +7,17 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import android.app.Activity;
+import android.graphics.Color;
+import android.view.View;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import java.util.Locale;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
@@ -18,7 +29,7 @@ public class FTC_2020_HK1_Init {
     public DcMotor Rfront;
     public DcMotor Lback;
     public DcMotor Rback;
-
+    /*
     //LS1 (Horizontal)
     public DcMotor LS1;
 
@@ -27,7 +38,7 @@ public class FTC_2020_HK1_Init {
 
     //Clip
     public Servo Clip;
-
+    */
     //Drive
     public double Lfronttmp = 0;
     public double Lbacktmp = 0;
@@ -38,7 +49,7 @@ public class FTC_2020_HK1_Init {
     public double Lbackforward = 0;
     public double Rfrontforward = 0;
     public double Rbackforward = 0;
-
+    /*
     //cam
     public WebcamName Webcam;
     //imu
@@ -46,8 +57,11 @@ public class FTC_2020_HK1_Init {
 
     //touch sensor
     public DigitalChannel TS1;
-
+    */
     //2m distance sensor
+    public DistanceSensor DS;
+    //color sensor V3
+    public ColorSensor CS;
 
     public HardwareMap _hw;
 
@@ -58,18 +72,21 @@ public class FTC_2020_HK1_Init {
         Rfront = _hw.dcMotor.get("Rfront");
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
-
+        /*
         LS1 = _hw.dcMotor.get("LS1");
         LS2 = _hw.dcMotor.get("LS2");
 
         Clip = _hw.servo.get("Clip");
 
         TS1 = _hw.get(DigitalChannel.class, "TS1");
-
+        */
+        CS = _hw.get(ColorSensor.class, "CS");
+        DS = _hw.get(DistanceSensor.class,"DS");
+        /*
         Webcam = _hw.get(WebcamName.class, "Webcam");
 
         imu = _hw.get(BNO055IMU.class, "imu");
-
+        */
         Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
         Lback.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -78,8 +95,8 @@ public class FTC_2020_HK1_Init {
         Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        LS1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //LS1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void runModeSet(String mode) {
