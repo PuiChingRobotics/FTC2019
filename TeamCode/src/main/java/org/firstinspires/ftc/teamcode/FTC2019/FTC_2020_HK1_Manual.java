@@ -38,7 +38,6 @@ public class FTC_2020_HK1_Manual extends OpMode {
 
         //Player 1
 
-        //Drive
         double leftstickx = 0;
         double leftsticky = 0;
         double rightstickx = 0;
@@ -72,6 +71,8 @@ public class FTC_2020_HK1_Manual extends OpMode {
             leftsticky = -gamepad1.left_stick_y;
             rightstickx = gamepad1.right_stick_x * speedmodifier;
         }
+
+
         if (Math.abs(leftsticky) <= .15) {
             leftsticky = 0;
         }
@@ -90,6 +91,7 @@ public class FTC_2020_HK1_Manual extends OpMode {
         robot.Rfront.setPower(rightfrontpower);
         robot.Lback.setPower(leftrearpower);
         robot.Rback.setPower(rightrearpower);
+
 
         //Player 2
         /*
@@ -111,6 +113,13 @@ public class FTC_2020_HK1_Manual extends OpMode {
             robot.Clip.setPosition(0.45);
         }
         */
+        //Hammer
+        if (gamepad2.dpad_up) {
+            robot.Hammer.setPosition(0.1);
+        } else if (gamepad2.dpad_down) {
+            robot.Hammer.setPosition(0.45);
+        }
+
     }
 
     @Override

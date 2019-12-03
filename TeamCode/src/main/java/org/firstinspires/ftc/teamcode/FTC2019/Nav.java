@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.FTC2019;
+package org.firstinspires.ftc.teamcode.FTC2020;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -15,7 +15,7 @@ import java.util.List;
 
 abstract public class Nav extends LinearOpMode {
 
-    FTC_2019_USA_Init robot = new FTC_2019_USA_Init();
+    FTC_2020_HK1_Init robot = new FTC_2020_HK1_Init();
 
     BNO055IMU imu;
     Orientation angles;
@@ -25,7 +25,7 @@ abstract public class Nav extends LinearOpMode {
     boolean gs_first_run = true;
     ElapsedTime gs_speed_timer = new ElapsedTime();
 
-    private double wheel_encoder_ticks = 1120;
+    private double wheel_encoder_ticks = 723.24;
     private double wheel_diameter = 4;  // size of wheels
     public double ticks_per_inch = wheel_encoder_ticks / (wheel_diameter * Math.PI);
 
@@ -199,7 +199,7 @@ abstract public class Nav extends LinearOpMode {
             highest_ticks_traveled = Math.max(highest_ticks_traveled_l, highest_ticks_traveled_r);
 
             if (gotocrater) {
-                if (highest_ticks_traveled - lowest_ticks_traveled > 150) {
+                if (highest_ticks_traveled - lowest_ticks_traveled > 140) {
                     craterhit = true;
                 }
             }

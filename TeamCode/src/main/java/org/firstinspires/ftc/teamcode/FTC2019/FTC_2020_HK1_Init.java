@@ -15,9 +15,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import java.util.Locale;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
@@ -39,6 +44,10 @@ public class FTC_2020_HK1_Init {
     //Clip
     public Servo Clip;
     */
+
+    //Hammer 2020 Ver.
+    public Servo Hammer;
+
     //Drive
     public double Lfronttmp = 0;
     public double Lbacktmp = 0;
@@ -49,12 +58,10 @@ public class FTC_2020_HK1_Init {
     public double Lbackforward = 0;
     public double Rfrontforward = 0;
     public double Rbackforward = 0;
-    /*
-    //cam
-    public WebcamName Webcam;
+
     //imu
     BNO055IMU imu;
-
+    /*
     //touch sensor
     public DigitalChannel TS1;
     */
@@ -82,13 +89,14 @@ public class FTC_2020_HK1_Init {
         */
         CS = _hw.get(ColorSensor.class, "CS");
         DS = _hw.get(DistanceSensor.class,"DS");
-        /*
-        Webcam = _hw.get(WebcamName.class, "Webcam");
+
+        Hammer = _hw.servo.get("Hammer");
 
         imu = _hw.get(BNO055IMU.class, "imu");
-        */
-        Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
-        Lback.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+        Rfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        Rback.setDirection(DcMotorSimple.Direction.REVERSE);
 
         Rfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Rback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
