@@ -82,6 +82,20 @@ public class FTC_2020_HK1_AutoTest extends Nav {
                 hsvValues);
     }
 
+    void updateL () {
+        Color.RGBToHSV((int) (robot.CSL.red() * SCALE_FACTOR),
+                (int) (robot.CSL.green() * SCALE_FACTOR /1.8 ),
+                (int) (robot.CSL.blue() * SCALE_FACTOR /1.1 ),
+                hsvValues);
+    }
+
+    void updateR () {
+        Color.RGBToHSV((int) (robot.CSR.red() * SCALE_FACTOR),
+                (int) (robot.CSR.green() * SCALE_FACTOR /1.8 ),
+                (int) (robot.CSR.blue() * SCALE_FACTOR /1.1 ),
+                hsvValues);
+    }
+
     //abs
     int abs (int x) {
         if (x<0) return -x;
@@ -106,29 +120,20 @@ public class FTC_2020_HK1_AutoTest extends Nav {
 
     //Clip the block (L/M/R)
     void Left () {
-        go_forward(16+3,0,0.1,false);
-        robot.Hammer.setPosition(0.45);
-        sleep(500);
-        go_sideways(270,0,0.5,10);
-        go_forward(5*small,0,0.1,false);
+        robot.HammerL.setPosition(0.7);
+        sleep(1000);
         return;
     }
 
     void Middle () {
-        go_forward(8+3,0,0.1,false);
-        robot.Hammer.setPosition(0.45);
-        sleep(500);
-        go_sideways(270,0,0.5,10);
-        go_forward(8+5,0,0.1,false);
+        robot.Hammer.setPosition(0.7);
+        sleep(1000);
         return;
     }
 
     void Right () {
-        go_forward(3*small,0,0.1,false);
-        robot.Hammer.setPosition(0.45);
-        sleep(500);
-        go_sideways(270,0,0.5,10);
-        go_forward(16+5,0,0.1,false);
+        robot.HammerR.setPosition(0.7);
+        sleep(1000);
         return;
     }
 
@@ -139,20 +144,18 @@ public class FTC_2020_HK1_AutoTest extends Nav {
         initial();
         Nav_Init();
         robot.Hammer.setPosition(0.1);
+        robot.HammerL.setPosition(0.1);
+        robot.HammerR.setPosition(0.1);
 
         waitForStart();
 
-        update();
+        updateR();
         int right = -(Color.HSVToColor(0xff, values));
-
-        go_forward(8*small,0,0.1,false);
 
         update();
         int center = -(Color.HSVToColor(0xff, values));
 
-        go_forward(8*small,0,0.1,false);
-
-        update();
+        updateL();
         int left = -(Color.HSVToColor(0xff, values));
 
         String ans=where_isit(left, center, right);
@@ -165,15 +168,17 @@ public class FTC_2020_HK1_AutoTest extends Nav {
 
         switch (ans) {
             case "LEFT":
-                Left();
+                //Left();
                 break;
             case "MIDDLE":
-                Middle();
+                //Middle();
                 break;
             case "RIGHT":
                 Right();
                 break;
         }
+
+        go_sideways(270,0,1,10);
 
         robot.Lfront.setPower(0);
         robot.Rfront.setPower(0);

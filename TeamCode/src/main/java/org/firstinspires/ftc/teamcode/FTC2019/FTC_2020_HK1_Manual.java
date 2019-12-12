@@ -115,10 +115,13 @@ public class FTC_2020_HK1_Manual extends OpMode {
         */
         //Hammer
         if (gamepad2.dpad_up) {
-            robot.Hammer.setPosition(0.1);
+            robot.Hammer.setPosition(0.05);
         } else if (gamepad2.dpad_down) {
-            robot.Hammer.setPosition(0.45);
+            robot.Hammer.setPosition(0.7);
         }
+
+        telemetry.addData("Servo pos",robot.Hammer.getPosition());
+        telemetry.update();
 
     }
 

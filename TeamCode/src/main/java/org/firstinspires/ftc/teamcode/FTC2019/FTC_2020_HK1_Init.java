@@ -47,6 +47,8 @@ public class FTC_2020_HK1_Init {
 
     //Hammer 2020 Ver.
     public Servo Hammer;
+    public Servo HammerR;
+    public Servo HammerL;
 
     //Drive
     public double Lfronttmp = 0;
@@ -69,6 +71,9 @@ public class FTC_2020_HK1_Init {
     public DistanceSensor DS;
     //color sensor V3
     public ColorSensor CS;
+    public ColorSensor CSL;
+    public ColorSensor CSR;
+
 
     public HardwareMap _hw;
 
@@ -88,6 +93,9 @@ public class FTC_2020_HK1_Init {
         TS1 = _hw.get(DigitalChannel.class, "TS1");
         */
         CS = _hw.get(ColorSensor.class, "CS");
+        CSL = _hw.get(ColorSensor.class, "CSL");
+        CSR = _hw.get(ColorSensor.class, "CSR");
+
         DS = _hw.get(DistanceSensor.class,"DS");
 
         Hammer = _hw.servo.get("Hammer");
