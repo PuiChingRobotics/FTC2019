@@ -63,12 +63,7 @@ public class FTC_2020_HK1_Init {
 
     //imu
     BNO055IMU imu;
-    /*
-    //touch sensor
-    public DigitalChannel TS1;
-    */
-    //2m distance sensor
-    public DistanceSensor DS;
+
     //color sensor V3
     public ColorSensor CS;
     public ColorSensor CSL;
@@ -90,15 +85,13 @@ public class FTC_2020_HK1_Init {
 
         Clip = _hw.crservo.get("Clip");
 
-        //TS1 = _hw.get(DigitalChannel.class, "TS1");
-
         CS = _hw.get(ColorSensor.class, "CS");
         CSL = _hw.get(ColorSensor.class, "CSL");
         CSR = _hw.get(ColorSensor.class, "CSR");
 
-        DS = _hw.get(DistanceSensor.class,"DS");
-
         Hammer = _hw.servo.get("Hammer");
+        HammerR = _hw.servo.get("HammerR");
+        HammerL = _hw.servo.get("HammerL");
 
         imu = _hw.get(BNO055IMU.class, "imu");
 
