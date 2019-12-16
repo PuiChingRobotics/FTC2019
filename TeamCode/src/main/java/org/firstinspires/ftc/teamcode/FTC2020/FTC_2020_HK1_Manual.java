@@ -94,11 +94,11 @@ public class FTC_2020_HK1_Manual extends OpMode {
 
         //Player 1
         //LS1
-        if (gamepad1.left_trigger > 0.1) {
-            robot.LS1.setPower(gamepad1.left_trigger);
+        if (gamepad1.left_bumper) {
+            robot.LS1.setPower(0.3);
         }
-        else if (gamepad1.right_trigger > 0.1) {
-            robot.LS1.setPower(-gamepad1.right_trigger);
+        else if (gamepad1.right_bumper) {
+            robot.LS1.setPower(-0.3);
         }
         else {
             robot.LS1.setPower(0);
@@ -107,24 +107,24 @@ public class FTC_2020_HK1_Manual extends OpMode {
         //Player 2
         //LS2
         if (gamepad2.left_trigger > 0.1) {
-            robot.LS2.setPower(gamepad1.left_trigger);
+            robot.LS2.setPower(-gamepad2.left_trigger);
         }
         else if (gamepad2.right_trigger > 0.1) {
-            robot.LS2.setPower(-gamepad1.right_trigger*.2);
+            robot.LS2.setPower(gamepad2.right_trigger*.1);
         }
         else {
-            robot.LS2.setPower(0);
+            robot.LS2.setPower(-0.3);
         }
 
         //Clip
         if (gamepad2.b) {
-            robot.Clip.setPower(1);
+            robot.Clip.setPower(-1);
         }
         else if (gamepad2.a) {
             robot.Clip.setPower(0);
         }
         else {
-            robot.Clip.setPower(-1);
+            robot.Clip.setPower(1);
         }
 
         //Hammer
@@ -137,9 +137,6 @@ public class FTC_2020_HK1_Manual extends OpMode {
             robot.HammerR.setPosition(0.7);
             robot.HammerL.setPosition(0.05);
         }
-
-        telemetry.addData("Servo pos",robot.Hammer.getPosition());
-        telemetry.update();
 
     }
 

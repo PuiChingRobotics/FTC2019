@@ -178,7 +178,7 @@ public class FTC_2020_HK1_AutoTest extends Nav {
                 break;
         }
 
-        go_sideways(270,0,1,10);
+        go_sideways(270,0,0.5,10);
 
         robot.Lfront.setPower(0);
         robot.Rfront.setPower(0);
