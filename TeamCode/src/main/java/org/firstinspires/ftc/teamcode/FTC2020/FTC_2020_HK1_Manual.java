@@ -128,6 +128,7 @@ public class FTC_2020_HK1_Manual extends OpMode {
         }
 
         //Hammer
+        /*
         if (gamepad2.dpad_up) {
             robot.Hammer.setPosition(0.1);
             robot.HammerR.setPosition(0.1);
@@ -137,6 +138,32 @@ public class FTC_2020_HK1_Manual extends OpMode {
             robot.HammerR.setPosition(0.7);
             robot.HammerL.setPosition(0.05);
         }
+        */
+        if (gamepad2.dpad_left) {
+            robot.Lfront.setPower(0.1);
+            robot.Rfront.setPower(-0.1);
+            robot.Lback.setPower(-0.1);
+            robot.Rback.setPower(0.1);
+        }
+        else if (gamepad2.dpad_right) {
+            robot.Lfront.setPower(-0.1);
+            robot.Rfront.setPower(0.1);
+            robot.Lback.setPower(0.1);
+            robot.Rback.setPower(-0.1);
+        }
+        else {
+            robot.Lfront.setPower(0);
+            robot.Rfront.setPower(0);
+            robot.Lback.setPower(0);
+            robot.Rback.setPower(0);
+        }
+
+
+
+        telemetry.addData("Lfront",robot.Lfront.getPower());
+        telemetry.addData("Rfront",robot.Rfront.getPower());
+        telemetry.addData("Lback",robot.Lback.getPower());
+        telemetry.addData("Rback",robot.Rback.getPower());
 
     }
 

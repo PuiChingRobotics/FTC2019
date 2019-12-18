@@ -149,6 +149,10 @@ public class FTC_2020_HK1_AutoTest extends Nav {
 
         waitForStart();
 
+        go_sideways(90,0,0.4,30);
+
+        sleep(1000);
+
         updateR();
         int right = -(Color.HSVToColor(0xff, values));
 
@@ -178,7 +182,35 @@ public class FTC_2020_HK1_AutoTest extends Nav {
                 break;
         }
 
-        go_sideways(270,0,0.5,10);
+        go_sideways(270,0,0.4,10);
+
+        sleep(500);
+
+        go_forward(70,0,0.5,false);
+
+        sleep(500);
+
+        go_forward(48,0,-0.5,false);
+
+        sleep(500);
+
+        go_sideways(90,0,0.4,13);
+
+        sleep(500);
+
+        switch (ans) {
+            case "LEFT":
+                Left();
+                break;
+            case "MIDDLE":
+                Middle();
+                break;
+            case "RIGHT":
+                Right();
+                break;
+        }
+
+
 
         robot.Lfront.setPower(0);
         robot.Rfront.setPower(0);
