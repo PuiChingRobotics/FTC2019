@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.FTC2020;
+package org.firstinspires.ftc.teamcode.FTC2021;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -27,28 +27,13 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 
-public class FTC_2020_HK1_Init {
+public class FTC_2021_goBilda_Init {
 
     //Drive Motors
     public DcMotor Lfront;
     public DcMotor Rfront;
     public DcMotor Lback;
     public DcMotor Rback;
-
-    //LS1 (Horizontal)
-    public DcMotor LS1;
-
-    //LS2 (Vertical)
-    public DcMotor LS2;
-
-    //Clip
-    public CRServo Clip;
-
-
-    //Hammer 2020 Ver.
-    public Servo Hammer;
-    public Servo HammerR;
-    public Servo HammerL;
 
     //Drive
     public double Lfronttmp = 0;
@@ -65,10 +50,21 @@ public class FTC_2020_HK1_Init {
     BNO055IMU imu;
 
     //color sensor V3
-    public ColorSensor CS;
-    public ColorSensor CSL;
-    public ColorSensor CSR;
+    public ColorSensor CS1;
+    public ColorSensor CS2;
 
+    //Grabber
+    public DcMotor Grabber;
+
+    //Fly
+    public DcMotor Fly;
+    public DcMotor Flyhigh;
+
+    //Intake
+    public DcMotor Intake;
+
+    //
+    public CRServo Lift;
 
     public HardwareMap _hw;
 
@@ -80,25 +76,24 @@ public class FTC_2020_HK1_Init {
         Lback = _hw.dcMotor.get("Lback");
         Rback = _hw.dcMotor.get("Rback");
 
-        LS1 = _hw.dcMotor.get("LS1");
-        LS2 = _hw.dcMotor.get("LS2");
+        Grabber = _hw.dcMotor.get("Grabber");
 
+        Intake = _hw.dcMotor.get("Intake");
 
+        Fly = _hw.dcMotor.get("Fly");
 
-        Clip = _hw.crservo.get("Clip");
-
-        CS = _hw.get(ColorSensor.class, "CS");
-        CSL = _hw.get(ColorSensor.class, "CSL");
-        CSR = _hw.get(ColorSensor.class, "CSR");
-
-        Hammer = _hw.servo.get("Hammer");
-        HammerR = _hw.servo.get("HammerR");
-        HammerL = _hw.servo.get("HammerL");
+        Flyhigh = _hw.dcMotor.get("Flyhigh");
 
         imu = _hw.get(BNO055IMU.class, "imu");
 
+        CS1 = _hw.get(ColorSensor.class, "CS1");
+        CS2 = _hw.get(ColorSensor.class, "CS2");
 
-        Rfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        Lift = _hw.crservo.get("Lift");
+
+
+        Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
+
         Rback.setDirection(DcMotorSimple.Direction.REVERSE);
 
         Rfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -106,8 +101,6 @@ public class FTC_2020_HK1_Init {
         Lfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Lback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //LS1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //LS2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void runModeSet(String mode) {
