@@ -11,6 +11,8 @@ public class FTC_2021_goBilda_Manual extends OpMode {
     FTC_2021_goBilda_Init robot = new FTC_2021_goBilda_Init();
 
     double speedmodifier = 1;
+    boolean kaimove=false;
+    boolean gamepad_b_button_on_hold=false;
 
     @Override
     public void init() {
@@ -51,7 +53,6 @@ public class FTC_2021_goBilda_Manual extends OpMode {
         double rightrearpower;
         double dpadpower = .2;
         double dpadturningpower = .4;
-        boolean liftmove=false;
         int liftdirection = 1;
 
         if (gamepad1.left_stick_button) {
@@ -97,24 +98,54 @@ public class FTC_2021_goBilda_Manual extends OpMode {
 
         //Grabber
         if (gamepad2.dpad_down) {
-            robot.Grabber.setTargetPosition(-300);
+            robot.Grabber.setTargetPosition(-550);
             robot.Grabber.setPower(-0.5);
         }
         else if (gamepad2.dpad_up) {
             robot.Grabber.setTargetPosition(0);
-            robot.Grabber.setPower(0.5);
+            robot.Grabber.setPower(1);
+        }
+        //Kai
+        if(gamepad2.b){
+            //if(!gamepad_b_button_on_hold)
+        }
+        if (gamepad2.b) {
+            kaimove=(!kaimove);
         }
 
-        //Intake
-        if (gamepad2.left_bumper) {
-            robot.Intake.setPower(1);
-        }
-        else if (gamepad2.right_bumper) {
-            robot.Intake.setPower(-1);
+        if (kaimove){
+            robot.Kai.setPosition(1);
         }
         else {
-            robot.Intake.setPower(0);
+            robot.Kai.setPosition(0.2);
         }
+        //Intake
+        if (gamepad2.left_bumper) {
+            robot.Lift.setPower(-1);
+            robot.Intake.setPower(1);
+
+        }
+
+        else {
+            robot.Lift.setPower(0);
+            robot.Intake.setPower(0);
+
+        }
+        //fliping
+        if (gamepad2.right_bumper) {
+            robot.Stack.setPosition(0.45);
+        }
+        else {
+            robot.Stack.setPosition(0.15);
+        }
+
+
+
+
+        //pushStack
+        //if (gamepad1.B) {
+        //    robot.Stack.setPosition(0.15);
+        //}
 
         //Fly
         if (gamepad1.left_bumper) {
@@ -126,13 +157,17 @@ public class FTC_2021_goBilda_Manual extends OpMode {
             robot.Flyhigh.setPower(0);
         }
 
-        //Lift
-        if ((gamepad2.b)) {
-            liftmove=(!liftmove);
+        //Shoot
+        if (gamepad1.right_bumper){
+            robot.Shoot.setPosition(0.1);
         }
-        if (liftmove) {
-            robot.lift.setPower(1);
+        else {
+            robot.Shoot.setPosition(0.2);
         }
+
+        //
+
+
     }
 
 
