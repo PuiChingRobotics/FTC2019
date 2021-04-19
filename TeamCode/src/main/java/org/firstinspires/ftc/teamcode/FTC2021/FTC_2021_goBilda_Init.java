@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.FTC2021;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import java.util.Stack;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -65,6 +66,9 @@ public class FTC_2021_goBilda_Init {
 
     //
     public CRServo Lift;
+    public Servo Shoot;
+    public Servo Stack;
+    public Servo Kai;
 
     public HardwareMap _hw;
 
@@ -90,9 +94,12 @@ public class FTC_2021_goBilda_Init {
         CS2 = _hw.get(ColorSensor.class, "CS2");
 
         Lift = _hw.crservo.get("Lift");
+        Shoot = hw.servo.get("Shoot");
+        Stack = hw.servo.get("Stack");
+        Kai = hw.servo.get("Kai");
 
 
-        Lfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        Rfront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         Rback.setDirection(DcMotorSimple.Direction.REVERSE);
 
