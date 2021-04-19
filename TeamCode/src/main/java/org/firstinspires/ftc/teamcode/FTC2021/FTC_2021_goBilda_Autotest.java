@@ -97,15 +97,52 @@ public class FTC_2021_goBilda_Autotest extends Nav {
     }
 
     void Zero () {
+        go_forward(20,0,0.3,false);
+        sleep(200);
         return;
     }
 
     void One () {
+        go_forward(43,0,0.3,false);
+        sleep(200);
+        go_sideways(270,0,0.2,14);
+        sleep(200);
         return;
     }
 
     void Four () {
+        go_forward(61,0,0.3,false);
+        sleep(200);
         return;
+    }
+
+    void place () {
+        robot.Grabber.setTargetPosition(-550);
+        sleep(200);
+        robot.Grabber.setPower(-0.5);
+        sleep(200);
+        robot.Kai.setPosition(0.2);
+        sleep(200);
+    }
+
+    void shoot () {
+        for (int i=0;i<4;i++) {
+            robot.Shoot.setPosition(0.1);
+
+            sleep(500);
+
+            robot.Shoot.setPosition(0.2);
+
+            sleep(200);
+
+            robot.Stack.setPosition(0.45);
+
+            sleep(500);
+
+            robot.Stack.setPosition(0.15);
+
+            sleep(1000);
+        }
     }
 
     @Override
@@ -114,8 +151,28 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         initial();
         Nav_Init();
 
+        robot.Grabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Grabber.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Grabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //kai
+        robot.Kai.setPosition(1);
+        //grabber
+        robot.Grabber.setTargetPosition(-50);
+        robot.Grabber.setPower(1);
+
         waitForStart();
 
+        //go to scan the donuts
+        go_forward(33,0,0.3,false);
+
+        sleep(200);
+
+        go_sideways(270,0,0.2,11.25);
+
+        sleep(200);
+
+        //scan the donuts
         update1();
         int CS1 = -(Color.HSVToColor(0xff, values));
 
@@ -129,6 +186,11 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         telemetry.addData("There are ", ans," Donuts~");
         telemetry.update();
 
+        go_sideways(90,0,0.2,5);
+
+        sleep(200);
+
+        //different result different path
         switch (ans) {
             case "ZERO":
                 Zero();
@@ -140,6 +202,18 @@ public class FTC_2021_goBilda_Autotest extends Nav {
                 Four();
                 break;
         }
+
+        place();
+
+        robot.Fly.setPower(-1);
+        robot.Flyhigh.setPower(-1);
+
+        sleep(1000);
+
+        shoot();
+
+        robot.Fly.setPower(0);
+        robot.Flyhigh.setPower(0);
 
         robot.Lfront.setPower(0);
         robot.Rfront.setPower(0);
