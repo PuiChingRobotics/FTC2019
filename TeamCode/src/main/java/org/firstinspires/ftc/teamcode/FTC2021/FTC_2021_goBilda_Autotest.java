@@ -74,44 +74,31 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         robot.runModeSet("encoder");
     }
 
-    //update value of color sensor
-    void update1 () {
-        Color.RGBToHSV((int) (robot.CS1.red() * SCALE_FACTOR),
-                (int) (robot.CS1.green() * SCALE_FACTOR),
-                (int) (robot.CS1.blue() * SCALE_FACTOR),
-                hsvValues);
-    }
-
-    void update2 () {
-        Color.RGBToHSV((int) (robot.CS2.red() * SCALE_FACTOR),
-                (int) (robot.CS2.green() * SCALE_FACTOR),
-                (int) (robot.CS2.blue() * SCALE_FACTOR),
-                hsvValues);
-    }
-
     //find how many
-    String donut(int cs_1, int cs_2) {
-        if ((cs_1>=5000000)&&(cs_2>=5000000)) return "ZERO";
-        else if (cs_1>=5000000) return "ONE";
+    String donut(double cs_1, double cs_2) {
+        if ((cs_1>=100)&&(cs_2>=100)) return "ZERO";
+        else if (cs_1>=100) return "ONE";
         else return "FOUR";
     }
 
     void Zero () {
-        go_forward(20,0,0.3,false);
+        go_forward(4,0,0.3,false);
+        go_sideways(90,0,0.2,12);
         sleep(200);
         return;
     }
 
     void One () {
-        go_forward(43,0,0.3,false);
+        go_forward(24,0,0.3,false);
         sleep(200);
-        go_sideways(270,0,0.2,14);
+        go_sideways(270,0,0.2,10);
         sleep(200);
         return;
     }
 
     void Four () {
-        go_forward(61,0,0.3,false);
+        go_forward(50,0,0.3,false);
+        go_sideways(90,0,0.2,12);
         sleep(200);
         return;
     }
@@ -141,7 +128,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
             robot.Stack.setPosition(0.15);
 
-            sleep(1000);
+            sleep(200);
         }
     }
 
@@ -164,29 +151,37 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         waitForStart();
 
         //go to scan the donuts
-        go_forward(33,0,0.3,false);
+        go_forward(38,0,0.3,false);
 
         sleep(200);
 
-        go_sideways(270,0,0.2,11.25);
-
+        go_sideways(270,0,0.2,5);
         sleep(200);
 
         //scan the donuts
-        update1();
-        int CS1 = -(Color.HSVToColor(0xff, values));
-
-        update2();
-        int CS2 = -(Color.HSVToColor(0xff, values));
-
-        String ans=donut(CS1,CS2);
-
-        telemetry.addData("CS1", CS1);
-        telemetry.addData("CS2", CS2);
+        double rs1 = robot.CS1.getDistance(DistanceUnit.MM);
+        double rs2 = robot.CS2.getDistance(DistanceUnit.MM);
+        String ans=donut(rs1,rs2);
+        // output
+        telemetry.addData("CS1", rs1);
+        telemetry.addData("CS2", rs2);
         telemetry.addData("There are ", ans," Donuts~");
         telemetry.update();
 
-        go_sideways(90,0,0.2,5);
+        // go shoot shit
+        go_sideways(90,0,0.2,1);
+        go_forward(16,0,0.3,false);
+        go_sideways(270,0,0.2,10);
+        robot.Fly.setPower(-1);
+        robot.Flyhigh.setPower(-1);
+
+        sleep(750);
+        //shoot
+        shoot();
+
+        robot.Fly.setPower(0);
+        robot.Flyhigh.setPower(0);
+
 
         sleep(200);
 
@@ -205,23 +200,14 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
         place();
 
-        robot.Fly.setPower(-1);
-        robot.Flyhigh.setPower(-1);
-
-        sleep(1000);
-
-        shoot();
-
-        robot.Fly.setPower(0);
-        robot.Flyhigh.setPower(0);
 
         robot.Lfront.setPower(0);
         robot.Rfront.setPower(0);
         robot.Rback.setPower(0);
         robot.Lback.setPower(0);
 
-        telemetry.addData("CS1", CS1);
-        telemetry.addData("CS2", CS2);
+        telemetry.addData("CS1", rs1);
+        telemetry.addData("CS2", rs2);
         telemetry.addData("There are ", ans," Donuts~");
         telemetry.update();
 

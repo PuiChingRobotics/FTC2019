@@ -125,6 +125,12 @@ public class FTC_2021_goBilda_Manual extends OpMode {
             robot.Intake.setPower(1);
 
         }
+        //reverse intake
+        if (gamepad2.left_trigger) {
+            //robot.Lift.setPower(1);
+            robot.Intake.setPower(-1);
+
+        }
 
         else {
             robot.Lift.setPower(0);

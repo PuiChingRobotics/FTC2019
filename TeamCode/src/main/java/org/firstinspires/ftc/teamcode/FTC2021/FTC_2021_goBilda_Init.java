@@ -50,9 +50,9 @@ public class FTC_2021_goBilda_Init {
     //imu
     BNO055IMU imu;
 
-    //color sensor V3
-    public ColorSensor CS1;
-    public ColorSensor CS2;
+    //Distance Sensor
+    public DistanceSensor CS1;
+    public DistanceSensor CS2;
 
     //Grabber
     public DcMotor Grabber;
@@ -90,8 +90,8 @@ public class FTC_2021_goBilda_Init {
 
         imu = _hw.get(BNO055IMU.class, "imu");
 
-        CS1 = _hw.get(ColorSensor.class, "CS1");
-        CS2 = _hw.get(ColorSensor.class, "CS2");
+        CS1 = _hw.get(DistanceSensor.class, "CS1");
+        CS2 = _hw.get(DistanceSensor.class, "CS2");
 
         Lift = _hw.crservo.get("Lift");
         Shoot = hw.servo.get("Shoot");

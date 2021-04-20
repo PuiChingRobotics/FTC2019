@@ -15,7 +15,7 @@ import java.util.List;
 
 abstract public class Nav extends LinearOpMode {
 
-    FTC_2021_goBilda_Init robot = new FTC_2020_goBilda_Init();
+    FTC_2021_goBilda_Init robot = new FTC_2021_goBilda_Init();
 
     BNO055IMU imu;
     Orientation angles;
@@ -25,8 +25,8 @@ abstract public class Nav extends LinearOpMode {
     boolean gs_first_run = true;
     ElapsedTime gs_speed_timer = new ElapsedTime();
 
-    private double wheel_encoder_ticks = 723.24;
-    private double wheel_diameter = 4;  // size of wheels
+    private double wheel_encoder_ticks = 537.7;
+    private double wheel_diameter = 3.75;  // size of wheels
     public double ticks_per_inch = wheel_encoder_ticks / (wheel_diameter * Math.PI);
 
     public double goforwardstopdetect = 30;
