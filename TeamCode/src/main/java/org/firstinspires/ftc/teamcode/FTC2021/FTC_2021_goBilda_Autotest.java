@@ -83,7 +83,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
     void Zero () {
         go_forward(4,0,0.3,false);
-        go_sideways(90,0,0.2,12);
+        go_sideways(90,0,0.2*spd,12);
         sleep(200);
         return;
     }
@@ -91,14 +91,14 @@ public class FTC_2021_goBilda_Autotest extends Nav {
     void One () {
         go_forward(24,0,0.3,false);
         sleep(200);
-        go_sideways(270,0,0.2,10);
+        go_sideways(270,0,0.2*spd,10);
         sleep(200);
         return;
     }
 
     void Four () {
         go_forward(50,0,0.3,false);
-        go_sideways(90,0,0.2,12);
+        go_sideways(90,0,0.2*spd,12);
         sleep(200);
         return;
     }
@@ -132,6 +132,8 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         }
     }
 
+    int spd = 2; //speed multiplier
+
     @Override
     public void runOpMode() {
 
@@ -151,11 +153,11 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         waitForStart();
 
         //go to scan the donuts
-        go_forward(38,0,0.3,false);
+        go_forward(38,0,0.3*spd,false);
 
         sleep(200);
 
-        go_sideways(270,0,0.2,5);
+        go_sideways(270,0,0.2*spd,5);
         sleep(200);
 
         //scan the donuts
@@ -169,9 +171,9 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         telemetry.update();
 
         // go shoot shit
-        go_sideways(90,0,0.2,1);
-        go_forward(16,0,0.3,false);
-        go_sideways(270,0,0.2,10);
+        go_sideways(90,0,0.2*spd,1);
+        go_forward(16,0,0.3*spd,false);
+        go_sideways(270,0,0.2*spd,10);
         robot.Fly.setPower(-1);
         robot.Flyhigh.setPower(-1);
 

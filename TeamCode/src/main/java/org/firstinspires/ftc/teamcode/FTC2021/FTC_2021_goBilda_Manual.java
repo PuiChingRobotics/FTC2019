@@ -12,7 +12,8 @@ public class FTC_2021_goBilda_Manual extends OpMode {
 
     double speedmodifier = 1;
     boolean kaimove=false;
-    boolean gamepad_b_button_on_hold=false;
+    boolean gamepad_b_prev = false;
+    boolean gamepad_b_curr = false;
 
     @Override
     public void init() {
@@ -102,17 +103,15 @@ public class FTC_2021_goBilda_Manual extends OpMode {
             robot.Grabber.setPower(-0.5);
         }
         else if (gamepad2.dpad_up) {
-            robot.Grabber.setTargetPosition(0);
+            robot.Grabber.setTargetPosition(100);
             robot.Grabber.setPower(1);
         }
         //Kai
-        if(gamepad2.b){
-            //if(!gamepad_b_button_on_hold)
-        }
-        if (gamepad2.b) {
+        gamepad_b_prev = gamepad_b_curr;
+        gamepad_b_curr = gamepad2.b;
+        if (!gamepad_b_prev&&gamepad_b_curr) {
             kaimove=(!kaimove);
         }
-
         if (kaimove){
             robot.Kai.setPosition(1);
         }
@@ -123,20 +122,18 @@ public class FTC_2021_goBilda_Manual extends OpMode {
         if (gamepad2.left_bumper) {
             robot.Lift.setPower(-1);
             robot.Intake.setPower(1);
-
         }
         //reverse intake
-        if (gamepad2.left_trigger) {
-            //robot.Lift.setPower(1);
+        else if (gamepad2.left_trigger>.5) {
             robot.Intake.setPower(-1);
 
         }
-
         else {
             robot.Lift.setPower(0);
             robot.Intake.setPower(0);
-
         }
+
+
         //fliping
         if (gamepad2.right_bumper) {
             robot.Stack.setPosition(0.45);
