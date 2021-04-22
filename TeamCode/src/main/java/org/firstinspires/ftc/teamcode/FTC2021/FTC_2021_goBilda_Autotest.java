@@ -82,8 +82,8 @@ public class FTC_2021_goBilda_Autotest extends Nav {
     }
 
     void Zero () {
-        go_forward(4,0,0.3,false);
-        go_sideways(90,0,0.2*spd,12);
+        go_forward(4,0,spd,false);
+        go_sideways(90,0,0.5*spd,8);
         sleep(200);
         return;
     }
@@ -112,11 +112,11 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         sleep(200);
     }
 
-    void shoot () {
-        for (int i=0;i<4;i++) {
+    void shoot (int n) {
+        for (int i=0;i<n;i++) {
             robot.Shoot.setPosition(0.1);
 
-            sleep(500);
+            sleep(750);
 
             robot.Shoot.setPosition(0.2);
 
@@ -132,7 +132,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         }
     }
 
-    int spd = 2; //speed multiplier
+    double spd = .75; //speed multiplier
 
     @Override
     public void runOpMode() {
@@ -153,11 +153,12 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         waitForStart();
 
         //go to scan the donuts
-        go_forward(38,0,0.3*spd,false);
+        go_forward(34,0,spd,false);
 
         sleep(200);
 
-        go_sideways(270,0,0.2*spd,5);
+        go_sideways(270,0,spd,1);
+
         sleep(200);
 
         //scan the donuts
@@ -171,15 +172,18 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         telemetry.update();
 
         // go shoot shit
-        go_sideways(90,0,0.2*spd,1);
-        go_forward(16,0,0.3*spd,false);
-        go_sideways(270,0,0.2*spd,10);
+        go_sideways(90,0,spd,3);
+        sleep(200);
+        go_forward(11,0,spd,false);
+        sleep(200);
+        go_sideways(270,0,spd,10);
+        sleep(200);
         robot.Fly.setPower(-1);
         robot.Flyhigh.setPower(-1);
 
         sleep(750);
         //shoot
-        shoot();
+        shoot(4);
 
         robot.Fly.setPower(0);
         robot.Flyhigh.setPower(0);
@@ -201,6 +205,24 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         }
 
         place();
+
+        sleep(500);
+
+        go_forward(17,0,-spd,false);
+
+        sleep(200);
+
+        turn_to_heading(207);
+
+        sleep(200);
+
+        go_forward(12,217,spd,false);
+
+        sleep(200);
+
+        go_forward(6,217,spd*0.3,false);
+
+        sleep(200);
 
 
         robot.Lfront.setPower(0);
