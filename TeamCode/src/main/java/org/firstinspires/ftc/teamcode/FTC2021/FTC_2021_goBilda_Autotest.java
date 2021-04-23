@@ -82,7 +82,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
     }
 
     void Zero () {
-        go_forward(4,0,spd,false);
+        go_forward(9,0,spd,false);
         go_sideways(90,0,0.5*spd,8);
         sleep(200);
         return;
@@ -104,10 +104,10 @@ public class FTC_2021_goBilda_Autotest extends Nav {
     }
 
     void place () {
-        robot.Grabber.setTargetPosition(-550);
-        sleep(200);
-        robot.Grabber.setPower(-0.5);
-        sleep(200);
+        //robot.Grabber.setTargetPosition(-400);
+        //sleep(200);
+        //robot.Grabber.setPower(-0.5);
+        //sleep(200);
         robot.Kai.setPosition(0.2);
         sleep(200);
     }
@@ -147,8 +147,12 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         //kai
         robot.Kai.setPosition(1);
         //grabber
-        robot.Grabber.setTargetPosition(-50);
+        robot.Grabber.setTargetPosition(0);
         robot.Grabber.setPower(1);
+
+        robot.Shoot.setPosition(0.2);
+
+        robot.Stack.setPosition(0.15);
 
         waitForStart();
 
@@ -157,9 +161,9 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
         sleep(200);
 
-        go_sideways(270,0,spd,1);
+        //go_sideways(270,0,spd,1);
 
-        sleep(200);
+        //sleep(200);
 
         //scan the donuts
         double rs1 = robot.CS1.getDistance(DistanceUnit.MM);
@@ -171,25 +175,30 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         telemetry.addData("There are ", ans," Donuts~");
         telemetry.update();
 
+        sleep(300);
+
         // go shoot shit
-        go_sideways(90,0,spd,3);
+        //go_sideways(90,0,spd,3);
+        //sleep(200);
+        go_forward(7,0,spd,false);
         sleep(200);
-        go_forward(11,0,spd,false);
-        sleep(200);
-        go_sideways(270,0,spd,10);
+        go_sideways(270,0,spd*0.5,10);
         sleep(200);
         robot.Fly.setPower(-1);
         robot.Flyhigh.setPower(-1);
 
-        sleep(750);
+        sleep(1000);
         //shoot
-        shoot(4);
+
+        robot.Shoot.setPosition(0.2);
+
+        sleep(200);
+
+        shoot(3);
 
         robot.Fly.setPower(0);
         robot.Flyhigh.setPower(0);
 
-
-        sleep(200);
 
         //different result different path
         switch (ans) {
@@ -197,10 +206,10 @@ public class FTC_2021_goBilda_Autotest extends Nav {
                 Zero();
                 break;
             case "ONE":
-                One();
+                Zero();
                 break;
             case "FOUR":
-                Four();
+                Zero();
                 break;
         }
 
@@ -208,21 +217,38 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
         sleep(500);
 
-        go_forward(17,0,-spd,false);
+        go_forward(21,0,-spd,false);
 
         sleep(200);
 
-        turn_to_heading(207);
+        turn_to_heading(180);
 
         sleep(200);
 
-        go_forward(12,217,spd,false);
+        go_sideways(90,180,spd*0.5,18);
 
         sleep(200);
 
-        go_forward(6,217,spd*0.3,false);
+        go_forward(9.5,180,spd*0.15,false);
 
         sleep(200);
+
+        robot.Kai.setPosition(1);
+        sleep(200);
+
+        turn_to_heading(30);
+
+        sleep(200);
+
+        go_forward(34,30,spd,false);
+
+        sleep(200);
+
+        robot.Kai.setPosition(0.2);
+        sleep(200);
+
+        //robot.Grabber.setTargetPosition(100);
+        //robot.Grabber.setPower(0.5);
 
 
         robot.Lfront.setPower(0);
@@ -235,7 +261,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         telemetry.addData("There are ", ans," Donuts~");
         telemetry.update();
 
-        sleep(50000000);
+        //sleep(50000000);
 
     }
 
