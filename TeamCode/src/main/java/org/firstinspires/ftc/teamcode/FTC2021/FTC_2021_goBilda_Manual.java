@@ -99,12 +99,12 @@ public class FTC_2021_goBilda_Manual extends OpMode {
 
         //Grabber
         if (gamepad2.dpad_down) {
-            robot.Grabber.setTargetPosition(-550);
-            robot.Grabber.setPower(-0.5);
+            robot.Grabber.setTargetPosition(0);
+            robot.Grabber.setPower(0.5);
         }
         else if (gamepad2.dpad_up) {
-            robot.Grabber.setTargetPosition(100);
-            robot.Grabber.setPower(1);
+            robot.Grabber.setTargetPosition(450);
+            robot.Grabber.setPower(0.5);
         }
         //Kai
         gamepad_b_prev = gamepad_b_curr;

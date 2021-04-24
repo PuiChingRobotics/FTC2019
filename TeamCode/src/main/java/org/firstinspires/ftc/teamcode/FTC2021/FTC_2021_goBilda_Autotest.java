@@ -145,16 +145,38 @@ public class FTC_2021_goBilda_Autotest extends Nav {
         robot.Grabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         //kai
-        robot.Kai.setPosition(1);
+        //robot.Kai.setPosition(1);
         //grabber
         robot.Grabber.setTargetPosition(0);
         robot.Grabber.setPower(1);
 
+        sleep(200);
+
+        robot.Grabber.setTargetPosition(800);
+        robot.Grabber.setPower(0.5);
+
         robot.Shoot.setPosition(0.2);
+
+        robot.Stack.setPosition(0.45);
+
+        waitForStart();
 
         robot.Stack.setPosition(0.15);
 
-        waitForStart();
+        go_forward(4,0,spd*0.05,false);
+        sleep(200);
+
+        go_forward(4,0,-spd*0.05,false);
+        sleep(200);
+
+        robot.Grabber.setTargetPosition(0);
+        robot.Grabber.setPower(-0.5);
+
+        sleep(1500);
+
+        robot.Kai.setPosition(1);
+
+        sleep(500);
 
         //go to scan the donuts
         go_forward(34,0,spd,false);
@@ -215,7 +237,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
         place();
 
-        sleep(500);
+        sleep(200);
 
         go_forward(21,0,-spd,false);
 
@@ -225,7 +247,7 @@ public class FTC_2021_goBilda_Autotest extends Nav {
 
         sleep(200);
 
-        go_sideways(90,180,spd*0.5,18);
+        go_sideways(90,180,spd*0.5,20);
 
         sleep(200);
 
